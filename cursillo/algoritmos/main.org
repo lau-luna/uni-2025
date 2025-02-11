@@ -3,3 +3,10 @@
 #+date: <2025-02-10 Mon>
 
 * Introducción a la Resolución de Problemas mediante Algoritmos
+
+** Profesores:
+- María Marta
+- Nicolás
+
+* ÍNDICE DE CLASES
+- <2025-02-11 Tue> [[org:../2025/uni/cursillo/algoritmos/mar-11-02-25.org][Algoritmos y Programas - Estructura Condicional Básica]]
