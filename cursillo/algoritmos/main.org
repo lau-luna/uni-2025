@@ -1,0 +1,5 @@
+#+title: Main
+#+author: Lautaro Luna
+#+date: <2025-02-10 Mon>
+
+* Introducción a la Resolución de Problemas mediante Algoritmos

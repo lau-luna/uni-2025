@@ -1,0 +1,48 @@
+#+title: Mar 11 02 25
+#+autor: Lautaro Luna
+#+date: <2025-02-11 Tue>
+
+* Algoritmos y programas
+
+** ¿Qué es un Algoritmo?
+Una secuencia de operaciones definidas que resuelve un problema luego de una secuencia de pasos finita.
+
+| Sintaxis | Semántica |
+|----------+-----------|
+| Código   | Acción    |
+
+
+* Lenguaje o notación
++ Lenguaje natural.
++ Código de máquina
++ Lenguaje de programación
+
+* Tabla de verdades de operadores lógicos
+
+*** Condicional ^ (&&) Conjunción
+
+| p     | q     | p&&q  |
+|-------+-------+-------|
+| true  | true  | true  |
+| true  | false | false |
+| false | true  | false |
+| false | false | false |
+
+*** Condicional || Disyunción
+
+| p     | q     | p&&q  |
+|-------+-------+-------|
+| true  | true  | true  |
+| true  | false | false |
+| false | true  | false |
+| false | false | false |
+
+*** Condicional ! Negación
+
+| a     | !a    |
+|-------+-------|
+| true  | false |
+| false | true  |
+
+* Ejercicio 1:
+- Dibujar dos cuadrados huecos en una grilla
