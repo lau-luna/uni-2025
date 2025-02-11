@@ -46,3 +46,76 @@ Una secuencia de operaciones definidas que resuelve un problema luego de una sec
 
 * Ejercicio 1:
 - Dibujar dos cuadrados huecos en una grilla
+
+[[https://editor.p5js.org/lau-luna/sketches/bcfDeCDci][Ejercicio Dibujar en la Cuadricula]]
+
+#+BEGIN_SRC js
+/**
+  Conjunto de instrucciones
+  izquierda() : mueve el cursor 1 paso a la izquierda
+  derecha() : mueve el cursor 1 paso a la derecha
+  abajo() : mueve el cursor 1 paso hacia abajo
+  arriba() : mueve el cursor 1 paso hacia abajo
+  pintar() : pinta en color gris la posición actual del cursor
+
+*/
+
+let lado = 5;
+
+function linea(pos){
+  for(i=0; i<lado-1; i++){
+    switch(pos) {
+      case "arriba":
+        pintar();
+        derecha();
+      break;
+      case "derecha":
+        pintar();
+        abajo();
+      break;
+      case "abajo":
+        pintar();
+        izquierda();
+      break;
+      case "izquierda":
+        pintar();
+        arriba();
+      break;
+    }
+  }
+}
+
+function cuadrado(){
+  linea("arriba");
+  linea("derecha");
+  linea("abajo");
+  linea("izquierda");
+}
+
+
+function dibujar(){
+  for(i=0;i<6;i++) {arriba();}
+
+  for(i=0; i<6; i++) {izquierda();}
+
+  cuadrado();
+
+  for(i=0; i<lado+1; i++){
+    derecha();
+  }
+
+  cuadrado();
+
+  for(i=0; i<lado+1; i++){
+    abajo();
+    izquierda();} cuadrado(); for(i=0; i<lado+1; i++){derecha();
+  }
+
+  cuadrado();
+
+}
+#+END_SRC
+
+#+BEGIN_QUOTE
+Hola xd
+#+END_QUOTE
