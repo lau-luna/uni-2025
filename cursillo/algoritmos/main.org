@@ -10,3 +10,4 @@
 
 * ÍNDICE DE CLASES
 - <2025-02-11 Tue> [[org:../2025/uni/cursillo/algoritmos/mar-11-02-25.org][Algoritmos y Programas - Estructura Condicional Básica]]
+- <2025-02-13 Thu> [[org:../2025/uni/cursillo/algoritmos/mie-13-02-25.org][Estructura Condicional Básica]]

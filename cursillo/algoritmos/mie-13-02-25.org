@@ -1,0 +1,94 @@
+#+title: Mie 13 02 25
+#+autor: Lautaro Luna
+#+date:<2025-02-13 Thu>
+
+[[https://computacionunrcingreso.github.io/Ingreso/#/class3][Clase]]
+
+* ¿Qué son las variables?
+** Una variable es la combinación de las siguientes cosas:
+- Un nombre (o identificador) a elección,
+- Una dirección en la memoria de la computadora,
+- Un valor almacenado en esa dirección de la memoria que puede cambiar durante la ejecución del programa,
+- Un tipo, que especifica cuanto espacio ocupa ese valor en la memoria, y cómo interpretar este valor.
+
+** Asignacion de variables
+*** Una asignación cambia el valor de una variable. Una asignación es una sentencia de la forma:
+nombre_variable = expresion;
+
+* Estructura condicional básica
+
+
+* Actividad
+** Escribe un programa que luego de que elijas un número y tires el dado, dibuje un círculo en color verde si has tenido suerte y adivinaste el valor del dado. Si no has tenido suerte, dibuja un círculo en algún otro color a elección.
+
+#+BEGIN_SRC js
+//dispones de la función ingresarValor() la cual devuelve
+//un valor numérico que es solictado al usuario
+
+
+// La función main se ejecutará Cada vez que haces
+//click en el lienzo
+function main(){
+  //Escriba su programa aquí
+
+  //Elije un valor
+  let valorElegido = ingresarValor();
+
+
+  if (valorElegido > 0 && valorElegido <=6) {
+      //Arroja el dado, el valor queda almacenado en dado
+  let dado = tirarDado();
+
+  let gano = (dado == valorElegido) ? true : false;
+
+    switch(gano){
+      case true:
+           fill('green');
+           circle(245, 300, 50);
+        break;
+      case false:
+           fill('red');
+           circle(245, 300, 50);
+        break;
+    }
+
+    /*
+    if(dado == valorElegido){
+      console.log("Iguales");
+      fill('green');
+      circle(245, 300, 50);
+    }
+
+
+     if(dado != valorElegido){
+      console.log("Distintos");
+      fill('red');
+      circle(245, 300, 50);
+    }
+
+    */
+  } else {
+    alert("Por favor, ingrese un numero del 1 al 6.");
+  }
+
+
+}
+
+
+#+END_SRC
+
+* Actividades
+1. Escribe un programa que luego de que elijas un número y tires el dado, dibuje un círculo en color verde si has tenido suerte y adivinaste el valor del dado. Si no has tenido suerte, dibuja un círculo en algún otro color a elección.
+   [[https://editor.p5js.org/lau-luna/sketches/VOXXJUxyn][Donde esta el punto? (1)]]
+
+2. Al pulsar el botón ejecutar en la ventana del editor se mostrará el Lienzo, de tamaño 500 x 500, dividido en dos partes iguales por una línea recta horizontal. Se proveen variables mouseX y mouseY que almacenan las coordenadas (x, y) del punto donde se hace click sobre el lienzo. La tarea consiste en escribir un programa que decida si se hizo click por encima o por debajo de la línea horizontal.
+   [[https://editor.p5js.org/lau-luna/sketches/RjZLLiNxi][Donde esta el punto? (2)]]
+
+3. En este caso, al pulsar el botón ejecutar en la ventana del editor, encontrarás el Lienzo divido en cuatro cuadrantes. Nuevamente se proveen las variables que almacenan las coordenadas (x, y) del punto donde se hizo click (mouseX y mouseY). Escribir un programa que decida en qué cuadrante se ha hecho click (arriba-derecha, arriba-izquierda, abajo-derecha o abajo-izquierda).
+   [[https://editor.p5js.org/lau-luna/sketches/QWrp0EB9O][Le di a la figura? (1)]]
+
+4. Cuando ejecutas este programa (botón ejecutar), se dibuja un círculo de tamaño aleatorio en el lienzo. Las partes (centro y diametro) de este círculo quedarán almacenadas en las variables: xCentro, yCentro y diametro. Además, contamos con las variables mouseX y mouseY, utilizadas anteriormente, que almacenan las coordenadas de un click. Esta actividad consiste en escribir un programa que decida si se hizo click dentro del círculo o fuera de él.
+   [[https://editor.p5js.org/lau-luna/sketches/p5R03Bggs][Le di a la figura? (2)]]
+
+5. Cuando ejecutas este programa (botón ejecutar), se dibuja un cuadrado de tamaño aleatorio en el lienzo. El tamaño de los lados de este cuadrado quedará almacenada en la variable: sideSise; y las coordenadas (x,y) de la esquina superior izquierda del cuadrado quedará almacenada en las variables xCoord e yCoord, respectivamente. Además, contamos con las variables mouseX y mouseY, que almacenan las coordenadas de un click. Esta actividad consiste en escribir un programa que decida si se hizo click dentro del cuadrado o fuera de él.
+   [[https://editor.p5js.org/lau-luna/sketches/TJF8rSJsZ][Angry bird en movimiento]]
