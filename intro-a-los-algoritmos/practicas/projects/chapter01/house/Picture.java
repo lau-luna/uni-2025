@@ -116,3 +116,5 @@ public class Picture
         sun.changeColor("yellow");
     }
 }
+
+

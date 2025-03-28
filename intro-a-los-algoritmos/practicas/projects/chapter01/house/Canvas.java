@@ -227,4 +227,10 @@ public class Canvas
         }
     }
 
+
+    Picture picture1 = new Picture();
 }
+
+
+
+
