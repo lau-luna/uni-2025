@@ -1,0 +1,541 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+
+% \renewcommand\familydefault{\sfdefault}
+% \usepackage{tgheros}
+% \usepackage[defaultmono]{droidmono}
+\usepackage{mathrsfs}
+
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\usepackage{geometry}
+\geometry{left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+
+\usepackage[table]{xcolor} % Para colorear tablas
+\usepackage{colortbl}      % Necesario para \cellcolor
+\usepackage{array}         % Para centrar texto en columnas
+
+\setlength{\parskip}{1em}
+%\linespread{1.3}
+
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+% % custom theorems if needed
+% \newtheoremstyle{mytheor}
+%     {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+%     {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+%
+% \theoremstyle{mytheor}
+% \newtheorem{defi}{Definition}
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\Large \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Lógica Proposicional}
+\cfoot{}
+%\rfoot{página \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+% code listing settings
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    xleftmargin=2em,
+    framexleftmargin=2em,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=5pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+
+%% SET THEORY %%
+
+\usepackage{mathtools}
+\usepackage{xparse}
+\DeclarePairedDelimiterX\set[2]{\{}{\}}{\,#1 \;\delimsize\vert\; #2\,}
+
+\newcommand{\eqdef}{\stackrel{\text{def}}{=}}
+
+%% local labels in equations %%
+
+\usepackage{xargs}
+
+\makeatletter
+  \newcommandx{\Label}[1][1={\arabic{equation}}]%
+    {\refstepcounter{equation}(\theequation)~\ltx@label{{#1}} &&}
+\makeatother
+
+%% Proof trees %%
+
+\usepackage{fitch}
+
+\usepackage{etoolbox}
+\let\bbordermatrix\bordermatrix
+\patchcmd{\bbordermatrix}{8.75}{4.75}{}{}
+\patchcmd{\bbordermatrix}{\left(}{\left[}{}{}
+\patchcmd{\bbordermatrix}{\right)}{\right]}{}{}
+
+%% circled question mark %%
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=.7pt] (char) {\footnotesize #1};}}
+\newcommand{\result}{\circled{?}}
+
+%% Venn Diagrams %%
+
+\usepackage{venndiagram}
+
+%% LOGICAL SYMBOLS %%
+
+\newcommand{\liff}{\leftrightarrow}
+\DeclarePairedDelimiterX\FORALL[3]{(}{)}{\,\forall #1 : #2 : #3 \,}
+\DeclarePairedDelimiterX\EXISTS[3]{(}{)}{\,\exists #1 : #2 : #3 \,}
+\DeclarePairedDelimiterX\eval[1]{\llbracket}{\rrbracket}{#1}
+\newcommand{\sem}[1]{\eval{#1}^{\model}}
+\newcommand{\semv}[2]{\eval{#2}^{\model,#1}}
+\newcommand{\model}{\mathfrak{M}}
+\newcommand{\interpretation}{\mathscr{I}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\fun}{fun}
+\DeclareMathOperator{\rel}{rel}
+
+\DeclareRobustCommand{\svdots}{% s for `scaling'
+  \vcenter{%
+    \offinterlineskip
+    \vspace{5pt}
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}%
+  }%
+}
+
+%% COMPLETE BOX %%
+\def\fillbox{\quad[\qquad]\quad}
+
+%% NO INDENT %%
+
+\setlength{\parindent}{0pt}
+
+%%%% LOCALDEFS %%%%
+
+\newcommand{\ambassador}{\mathsf{ambassador}_1}
+\newcommand{\person}{\mathsf{person}_1}
+\newcommand{\country}{\mathsf{country}_1}
+\newcommand{\sentto}{\mathsf{sentto}_2}
+\newcommand{\knight}{\mathsf{knight}_1}
+\newcommand{\knave}{\mathsf{knave}_1}
+\newcommand{\alice}{\mathsf{alice}}
+\newcommand{\bob}{\mathsf{bob}}
+\newcommand{\tom}{\mathsf{tom}}
+\newcommand{\carl}{\mathsf{carl}}
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Coloreo de grafos}
+
+\author{Lautaro Luna}
+
+\date{}
+
+\maketitle
+
+\vspace*{-1cm}
+
+\tableofcontents  % <-- Esto genera el índice
+\newpage
+
+\section{Coloreo de grafos}
+Considerando el siguiente grafo:
+
+\begin{tikzpicture}
+	\centering
+	\node[draw, circle] (A) at (0,2) {A};
+	\node[draw, circle] (B) at (3,2) {B};
+	\node[draw, circle] (C) at (0,0) {C};
+	\node[draw, circle] (D) at (3,0) {D};
+
+	\draw[->] (A) -- (B);  % Flecha de A a B
+	\draw[->] (A) -- (D);
+	\draw[->] (C) -- (A);
+	\draw[->] (D) -- (C);
+\end{tikzpicture}
+
+\subsection{Reestricciones del problema}
+
+\subsubsection{Las aristas son sólo entre nodos}
+\begin{equation}
+	(\forall s, t\;::\; edge_2(s, t) \rightarrow node_1(s) \land node_1(t))
+\end{equation}
+
+\subsubsection{El coloreo es entre nodo y color}
+\begin{equation}
+	(\forall n :: (\forall c :: coloring_2(n, c) \rightarrow node_1(n) \land color_1(c) ) )
+\end{equation}
+
+\subsubsection{Todo nodo tiene un único color}
+\begin{equation}
+	(\forall n, c, c' :: (coloring_2(n, c) \land coloring_2(n, c')) \rightarrow eq_2(c, c'))
+\end{equation}
+
+\subsubsection{No hay nodos adyacentes con el mismo color}
+\begin{equation}
+	\neg (\exists s, t, c :: edge_2(s, t) \land coloring_2(s, c) \land coloring_2(t, c))
+\end{equation}
+
+\subsubsection{Los nodos no son colores y los colores no son nodos}
+\begin{equation}
+	(\forall x :: node_1(x) \lor color_1(x)) \land \neg (\exists x :: node_1(x) \land color_1(x))
+\end{equation}
+
+\subsubsection{Tengo sólo 3 colores}
+\begin{multline}
+	color_1(C1) \land color_1(C2) \land color_1(C3) \\
+	\land (C1 \not= C2) \land (C2 \not= C3) \land (C1 \not= C3) \\
+	(\forall c :: color_1(c) \rightarrow c = C1 \lor c = C2 \lor c = C3) \\
+\end{multline}
+
+\newpage
+
+\begin{center}
+	\textbf{$node_1$} \\[4pt]
+	\renewcommand{\arraystretch}{1.5} % <-- Aumenta el espacio entre filas
+	\begin{tabular}{@{}c@{\hskip 1em}>{\columncolor{blue!80!white}\color{white}}c@{}}
+		0 & 1 \\
+		1 & 1 \\
+		2 & 1 \\
+		3 & 1 \\
+		4 & 0 \\
+		5 & 0 \\
+		6 & 0 \\
+	\end{tabular}
+\end{center}
+
+\newpage
+
+\section{Club de lectura}
+
+Se analiza un modelo lógico para representar la estructura de un club de lectura, utilizando predicados que distinguen entre miembros, novelas de misterio y novelas de ciencia ficción, así como la relación de gusto entre ellos.
+
+\subsection{Modelo que no debería ser permitido}
+
+\begin{center}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$member_1$ ($\phi$) } \\[4pt]
+		\begin{tabular}{@{}c@{\hskip 1em}>{\columncolor{blue!80!white}\color{white}}c@{}}
+			0 & 1 \\
+			1 & 1 \\
+			2 & 0 \\
+			3 & 0 \\
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$mysteryNovel_1$ ($\psi$)} \\[4pt]
+		\begin{tabular}{@{}c@{\hskip 1em}>{\columncolor{blue!80!white}\color{white}}c@{}}
+			0 & 0 \\
+			1 & 1 \\
+			2 & 1 \\
+			3 & 0 \\
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$scifiNovel_1$ ($\omega$)} \\[4pt]
+		\begin{tabular}{@{}c@{\hskip 1em}>{\columncolor{blue!80!white}\color{white}}c@{}}
+			0 & 0 \\
+			1 & 0 \\
+			2 & 0 \\
+			3 & 1 \\
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$likes_2$} \\[4pt]
+		\begin{tabular}{c@{\hskip 1em}*{4}{>{\columncolor{blue!80!white}\color{white}}c}}
+			% Encabezado con fondo blanco y texto negro
+			\rowcolor{white}
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{}  &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{0} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{1} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{2} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{3}                 \\
+			% Celdas de la matriz
+			0                                                        & 0 & 0 & 0 & 0 \\
+			1                                                        & 0 & 0 & 0 & 0 \\
+			2                                                        & 0 & 0 & 0 & 0 \\
+			3                                                        & 0 & 0 & 0 & 0 \\
+		\end{tabular}
+	\end{minipage}
+\end{center}
+\begin{center}
+	\begin{tikzpicture}
+		\centering
+		\node[draw, circle] (0) at (0,2) {0};
+		\node[draw, circle] (1) at (3,2) {1};
+		\node[draw, circle] (2) at (0,0) {2};
+		\node[draw, circle] (3) at (3,0) {3};
+
+	\end{tikzpicture}
+\end{center}
+
+\subsection{Valuación}
+\begin{center}
+	$\eval{\; (\forall x (\text{isMember}(x) \rightarrow \neg (\text{isMysteryNovel}(x) \lor \text{isSciFiNovel}(x))) \; \land
+			(\forall x ((\text{isMysteryNovel}(x) \lor \text{isSciFiNovel}(x)) \rightarrow \neg \text{isMember}(x))) \;} = 0$
+\end{center}
+\textbf{Para todo x, si x es un miembro, entonces x no es una novela de misterio o una novela de ciencia ficción. Y para todo x, si x es una novela de misterio o una novela de ciencia ficción, entonces x no es un miembro.}
+En otras palabras, esta fórmula indica que un miembro no puede ser ningún tipo de novela, y si es alguno de los tipos de novelas, no es un miembro.
+
+\subsection{Justificación en modelo no permitido}
+
+$
+	\begin{nd}
+		\hypo{}{\eval{{(\forall x (\phi(x) \rightarrow \neg (\psi(x) \lor \omega(x))) \land (\forall x ((\psi(x) \lor \omega(x)) \rightarrow \neg \phi(x)))}}}
+		\have{}{min (\eval{\phi}, \eval{\psi})}
+
+		\open
+		\hypo{}{\eval{(\forall x (\phi(x) \rightarrow \neg (\psi(x) \lor \omega(x)))} }
+		\have{}{min}
+
+		\open
+		\hypo{}{\eval{\phi(x) \rightarrow \neg (\psi(x) \lor \omega(x)}  \textbf{ cuando x = 1} }
+		\have{}{max(1-\eval{\phi(x)} ,\eval{\neg (\psi(x) \lor \omega(x)})}
+		\open
+		\hypo{}{\eval{\phi(x)}}
+		\have{}{1}
+		\close
+		\open
+		\hypo{}{\eval{\neg (\psi(x) \lor \omega(x))} }
+		\have{}{1-\eval{(\psi(x) \lor \omega(x))} }
+
+		\open
+		\hypo{}{\eval{\psi(x) \lor \omega(x)} }
+		\have{}{max(\eval{(\psi(x)}, \eval{\omega(x)} }
+		\open
+		\hypo{}{\eval{\psi(x)}}
+		\have{}{1}
+
+		\close
+		\open
+		\hypo{}{\eval{\omega(x)} }
+		\have{}{0}
+
+		\close
+		\have{}{1}
+		\close
+		\have{}{0}
+		\close
+
+
+
+		\have{}{max(1- 1, 0)}
+		\have{}{max(0, 0)}
+		\have{}{0}
+		\close
+
+		\have{}{0}
+		\close
+
+		\have{}{\eval{\phi}}
+		\have{}{0}
+
+	\end{nd}
+$
+
+En este caso, tomamos x = 1. La fórmula que propusimos da falsa; con x = 1, x es en este modelo a la vez, un miembro y una novela de misterio, pero establecimos formalmente que este caso no puede darse.
+
+
+\newpage
+
+\subsection{Modelo bueno}
+
+\begin{center}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$member_1$ ($\phi$) } \\[4pt]
+		\begin{tabular}{@{}c@{\hskip 1em}>{\columncolor{blue!80!white}\color{white}}c@{}}
+			0 & 1 \\
+			1 & 1 \\
+			2 & 0 \\
+			3 & 0 \\
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$mysteryNovel_1$ ($\psi$)} \\[4pt]
+		\begin{tabular}{@{}c@{\hskip 1em}>{\columncolor{blue!80!white}\color{white}}c@{}}
+			0 & 0 \\
+			1 & 0 \\
+			2 & 1 \\
+			3 & 0 \\
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$scifiNovel_1$ ($\omega$)} \\[4pt]
+		\begin{tabular}{@{}c@{\hskip 1em}>{\columncolor{blue!80!white}\color{white}}c@{}}
+			0 & 0 \\
+			1 & 0 \\
+			2 & 0 \\
+			3 & 1 \\
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$likes_2$} \\[4pt]
+		\begin{tabular}{c@{\hskip 1em}*{4}{>{\columncolor{blue!80!white}\color{white}}c}}
+			% Encabezado con fondo blanco y texto negro
+			\rowcolor{white}
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{}  &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{0} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{1} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{2} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{3}                 \\
+			% Celdas de la matriz
+			0                                                        & 0 & 0 & 1 & 1 \\
+			1                                                        & 0 & 0 & 0 & 0 \\
+			2                                                        & 0 & 0 & 0 & 0 \\
+			3                                                        & 0 & 0 & 0 & 0 \\
+		\end{tabular}
+	\end{minipage}
+\end{center}
+
+\begin{center}
+	\begin{tikzpicture}
+		\centering
+		\node[draw, circle] (0) at (0,2) {0};
+		\node[draw, circle] (1) at (0,0) {1};
+		\node[draw, circle] (2) at (3,2) {2};
+		\node[draw, circle] (3) at (3,0) {3};
+
+		\draw[->] (0) -- (2);  % Flecha de A a B
+		\draw[->] (0) -- (3);
+	\end{tikzpicture}
+\end{center}
+
+\subsubsection{Evitar reflexión}
+$(\forall x :: \neg likes_2(x, x))$
+
+\subsubsection{A ningún miembro le puede gustar otro miembro}
+$(\forall P1, P2 :: member_1(P1) \land member_1(P2) \land P1 \not= P2 \rightarrow \neg likes_2(P1, P2))$
+
+\subsubsection{A ninguna novela le puede gustar otra novela}
+$(\forall x, y :: (mysteryNovel_1(x) \lor scifiNovel_1(x)) \land (mysteryNovel_1(y) \lor scifiNovel_1(y)) \\ \rightarrow \neg likes_2(x, y))$
+
+\subsubsection{A ninguna novela le puede gustar un miembro}
+$(\forall x, p :: (mysteryNovel_1(x) \lor scifiNovel_1(x)) \land member_1(p) \rightarrow \neg likes_2(x, p))$
+
+\subsubsection{Existe un miembro que le gusta una de cada tipo de novela}
+$(\exists p, m, s :: member_1(p) \land mysteryNovel_1(m) \land scifiNovel_1(s) \land likes_2(p, m) \land likes_2(p, s))$
+
+\newpage
+Universo: 1, 2, 3
+\begin{center}
+	\begin{minipage}{0.23\textwidth}
+		\centering
+		\textbf{$G_2$} \\[4pt]
+		\begin{tabular}{c@{\hskip 1em}*{4}{>{\columncolor{blue!80!white}\color{white}}c}}
+			% Encabezado con fondo blanco y texto negro
+			\rowcolor{white}
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{}  &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{1} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{2} &
+			\multicolumn{1}{>{\columncolor{white}\color{black}}c}{3}             \\
+			1                                                        & 1 & 1 & 0 \\
+			2                                                        & 1 & 1 & 1 \\
+			3                                                        & 0 & 1 & 1 \\
+		\end{tabular}
+	\end{minipage}
+\end{center}
+
+\subsection{Lol}
+Probar que: \\
+$(\forall x, y :: G_2(x, y) \rightarrow G_2(x, y)$ \\
+$
+	\begin{nd}
+		\hypo{}{\eval{(\forall x, y :: G_2(x, y) \rightarrow G_2(x, y)}}
+		\have{}{min}
+
+		\open
+		\hypo{}{\eval{ G_2(x, y) \rightarrow G_2(x, y)}}
+		\have{}{max(1 - \eval{G_2(x, y)}, \eval{G_2(y, x)}}
+
+		\open
+		\hypo{}{\eval{ G_2(x, y))}}
+		\have{}{?}
+		\close
+
+		\open
+		\hypo{}{\eval{ G_2(y, y))}}
+		\have{}{?}
+		\close
+
+		\have{}{?}
+
+
+		\close
+		\have{}{?}
+
+	\end{nd}
+$
+
+
+
+\end{document}

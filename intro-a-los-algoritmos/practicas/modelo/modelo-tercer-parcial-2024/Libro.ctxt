@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Libro
+comment0.text=\n\ Un\ libro\ que\ tiene\ un\ titulo,\ una\ cantidad\ de\ ejemplares\ totales\ en\ la\ biblioteca,\ y\ una\ cantidad\ de\n\n\ @author\ (Lautaro\ Luna)\n\ @version\ (ver\ 1.0)\n
+comment1.params=titulo\ ejemplaresTotales
+comment1.target=Libro(java.lang.String,\ int)
+comment1.text=\n\ Contructor\ de\ libro\n\ @param\ titulo\ es\ el\ titulo\ del\ libro\n\ @param\ ejemplaresTotales\ son\ los\ ejemplares\ que\ se\ encuentran\ en\ la\ biblioteca\n\ \n\ @pre\ titulo\ \!\=\ null\ &&\ \!titulo.isEmpty()\n\ @pre\ ejemplaresTotales\ >\ 0\n
+comment2.params=
+comment2.target=void\ prestar()
+comment2.text=\n\ Presta\ un\ ejemplar\ del\ libro\ ssi\ hay\ ejemplares\ disponibles.\n\ @pre\ ejemplaresPrestados\ <\ ejemplaresTotales\n\ @throws\ IllegalStateException\ si\ se\ intenta\ prestar\ un\ libro\ y\ no\ hay\ mas\ ejemplares\ disponibles\ para\ prestar.\n
+comment3.params=
+comment3.target=void\ devolver()
+comment3.text=\n\ Devuelve\ un\ ejemplar\ del\ libro\ ssi\ hay\ ejemplares\ prestados.\n\ @pre\ ejemplaresPrestados\ >\ 0\n\ @throws\ IllegalStateException\ si\ se\ intenta\ devolver\ un\ libro\ y\ no\ hay\ ejemplares\ de\ ese\ libro\ prestado.\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\n\ @returns\ Un\ String\ con\ la\ informacion\ del\ libro.\n
+comment5.params=
+comment5.target=boolean\ repOK()
+comment5.text=\n\ Chequeo\ de\ invariante\ de\ clase\n
+numComments=6

@@ -1,4 +1,7 @@
 import java.awt.Color;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -21,9 +24,9 @@ public class BallDemo
     }
 
     /**
-     * Simulate two bouncing balls
+     * Simulate n bouncing balls
      */
-    public void bounce()
+    public void bounce(int n)
     {
         int ground = 400;   // position of the ground line
 
@@ -33,22 +36,42 @@ public class BallDemo
         myCanvas.setForegroundColor(Color.BLACK);
         myCanvas.drawLine(50, ground, 550, ground);
 
+        // Setting random RGB collors for the balls
+        Random random = new Random();
+
         // create and show the balls
-        BouncingBall ball = new BouncingBall(50, 50, 16, Color.BLUE, ground, myCanvas);
-        ball.draw();
-        BouncingBall ball2 = new BouncingBall(70, 80, 20, Color.RED, ground, myCanvas);
-        ball2.draw();
+        ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>();
+        for (int i = 0; i < n; i++) {
+            int r = random.nextInt(225);
+            int g = random.nextInt(225);
+            int b = random.nextInt(225);
+
+            Color randomColor = new Color(r, g, b);
+            int randomDiameter = random.nextInt(10, 100);
+            int ballXPosition = random.nextInt(50, 500);
+            
+            // int randomDiameter = i % 2 != 0 ? 20 : 40;
+
+            BouncingBall ball = new BouncingBall(ballXPosition, 50, randomDiameter, randomColor, ground, myCanvas);
+            ball.draw();
+            balls.add(ball);
+        }
 
         // make them bounce
         boolean finished =  false;
         while (!finished) {
-            myCanvas.wait(50);           // small delay
-            ball.move();
-            ball2.move();
-            // stop once ball has travelled a certain distance on x axis
-            if(ball.getXPosition() >= 550 || ball2.getXPosition() >= 550) {
-                finished = true;
+            myCanvas.wait(30);           // small delay
+            for (BouncingBall ball : balls) { 
+                ball.move();
+                // stop once ball has travelled a certain distance on x axis
+                if(balls.get(0).getXPosition() >= 550) {
+                    finished = true;
+                }
             }
         }
+    }
+    
+    public void boxBounce(int n){
+        Box box = new Box(n);
     }
 }

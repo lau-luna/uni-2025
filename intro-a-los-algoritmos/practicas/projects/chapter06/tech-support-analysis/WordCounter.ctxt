@@ -1,8 +1,15 @@
 #BlueJ class context
-comment0.params=
-comment0.target=WordCounter()
-comment0.text=\n\ Create\ a\ WordCounter\n
-comment1.params=input
-comment1.target=void\ addWords(java.util.HashSet)
-comment1.text=\n\ Update\ the\ usage\ count\ of\ all\ words\ in\ input.\n\ @param\ input\ A\ set\ of\ words\ entered\ by\ the\ user.\n
-numComments=2
+comment0.target=WordCounter
+comment1.params=
+comment1.target=WordCounter()
+comment1.text=\n\ Create\ a\ WordCounter\n
+comment2.params=input
+comment2.target=void\ addWords(java.util.HashSet)
+comment2.text=\n\ Update\ the\ usage\ count\ of\ all\ words\ in\ input.\n\ @param\ input\ A\ set\ of\ words\ entered\ by\ the\ user.\n
+comment3.params=
+comment3.target=java.util.HashMap\ getCounts()
+comment3.text=\n\ Retorna\ counts,\ que\ es\ un\ HashMap\ que\ asocia\ una\ clave\ String\ a\ cuantas\ veces\ aparece,\ a\ un\ Integer.\n\ @return\ Un\ HashMap\ con\ Strings\ asociadas\ a\ un\ contador.\n
+comment4.params=
+comment4.target=void\ printCounts()
+comment4.text=\n\ Imprime\ solo\ las\ claves\ que\ no\ estan\ en\ el\ responseMap\ de\ Responder.\n
+numComments=5

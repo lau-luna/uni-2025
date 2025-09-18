@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Usuario
+comment0.text=\n\ Write\ a\ description\ of\ class\ Usuario\ here.\n\n\ @author\ (Lautaro\ Luna)\n\ @version\ (ver\ 1.0)\n
+comment1.params=nombre
+comment1.target=Usuario(java.lang.String)
+comment1.text=\n\ Constructor\ de\ Usuario\n\ \n\ @param\ nombre\ del\ usuario\n\ @pre\ nombre\ \!\=\ null\ &&\ \!nombre.isEmpty()\n
+comment2.params=libro
+comment2.target=void\ pedirPrestado(Libro)
+comment2.text=\n\ Pide\ prestado\ un\ ejemplar\ de\ un\ libro\n\ \n\ @throws\ IllegalStateException\ si\ el\ usuario\ ya\ tiene\ el\ libro.\n\ @throws\ IllegalStateException\ si\ se\ cumple\ la\ invariante\ de\ clase.\n
+comment3.params=libro
+comment3.target=void\ devolverLibro(Libro)
+comment3.text=\n\ Pide\ prestado\ un\ ejemplar\ de\ un\ libro\n\ \n\ @throws\ IllegalStateException\ si\ se\ intenta\ devolver\ un\ libro\ que\ el\ usuario\ no\ tiene.\n\ @throws\ IllegalStateException\ si\ se\ cumple\ la\ invariante\ de\ clase.\n
+comment4.params=
+comment4.target=void\ imprimirLibros()
+comment4.text=\n\ Imprime\ la\ informacion\ de\ todos\ los\ libros\ del\ usuario\n
+comment5.params=
+comment5.target=boolean\ repOK()
+comment5.text=\n\ Chequeo\ de\ invariante\ de\ clase\n
+numComments=6

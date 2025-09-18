@@ -1,0 +1,15 @@
+nd:
+  envBody:
+    beginWith:
+      - '\open'
+    endWith:
+      - '\close'
+    lookForThis: '(.*)'
+    indentAfterThisLine: 1
+    body:
+      beginWith:
+        - '\open'
+      endWith:
+        - '\close'
+      lookForThis: '(.*)'
+      indentAfterThisLine: 1

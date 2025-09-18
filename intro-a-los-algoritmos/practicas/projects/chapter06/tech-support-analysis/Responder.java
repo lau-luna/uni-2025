@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.*;
 
 /**
  * The responder class represents a response generator object.
@@ -142,5 +143,24 @@ public class Responder
         // The number will be between 0 (inclusive) and the size of the list (exclusive).
         int index = randomGenerator.nextInt(defaultResponses.size());
         return defaultResponses.get(index);
+    }
+    
+    /**
+     * Imprime las palabras que no son claves en responseMap
+     */
+    public void printNotKeys(HashSet<String> words){
+        System.out.println("Not registered words: ");
+        for (String word : words) {
+            if(!responseMap.containsKey(word))
+                System.out.println(word);
+        }
+    }
+    
+    /**
+     * Devuelve un set con las heys de responseMap
+     * @return A set of Strings which are the responseMap keys.
+     */
+    public Set<String> getResponseMapKeys(){
+        return responseMap.keySet();
     }
 }

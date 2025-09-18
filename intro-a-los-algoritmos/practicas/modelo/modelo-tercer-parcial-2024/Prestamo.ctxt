@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Prestamo
+comment0.text=\n\ Modela\ un\ pr\u00E9stamo\ de\ un\ libro\ a\ un\ lector,\ con\ fecha\ de\ vencimiento.\n
+comment1.params=lector\ libro\ diasParaVencimiento
+comment1.target=Prestamo(java.lang.String,\ java.lang.String,\ int)
+comment1.text=\n\ Crea\ un\ pr\u00E9stamo.\ El\ lector\ y\ libro\ no\ deben\ ser\ nulos\ ni\ vac\u00EDos,\n\ y\ los\ d\u00EDas\ para\ vencimiento\ deben\ ser\ mayores\ a\ cero.\n\ \n\ \ @pre\ lector\ \!\=\ null\ &&\ \!lector.isEmpty()\n\ \ @pre\ libro\ \!\=\ null\ &&\ \!libro.isEmpty()\n\ \ @pre\ diasParaVencimiento\ >\ 0\n
+comment2.params=
+comment2.target=java.lang.String\ obtenerLector()
+comment3.params=
+comment3.target=java.lang.String\ obtenerLibro()
+comment4.params=
+comment4.target=int\ obtenerDiasParaVencimiento()
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment6.params=
+comment6.target=boolean\ repOK()
+numComments=7

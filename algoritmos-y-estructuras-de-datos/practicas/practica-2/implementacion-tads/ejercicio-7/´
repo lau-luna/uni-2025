@@ -1,0 +1,15 @@
+/**
+ * 7. Importa la clase Stack de Java ( import java.util.Stack) y utilı́zala para
+ * implementar un programa
+ * que dada una secuencia de caracteres, que representa una expresión
+ * matemática, verifique si la
+ * misma tiene los paréntesis correctamente balanceados.
+ */
+import java.util.Stack;
+
+public class Main {
+  public static void main(String[] args) {
+    String matExpression;
+
+  }
+}

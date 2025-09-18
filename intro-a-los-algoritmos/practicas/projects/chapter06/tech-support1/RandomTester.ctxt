@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=RandomTester
+comment1.params=
+comment1.target=RandomTester()
+comment2.params=
+comment2.target=void\ printOneRandom()
+comment3.params=howMany
+comment3.target=void\ printMultiRandom(int)
+comment4.params=
+comment4.target=void\ throwDice()
+comment5.params=
+comment5.target=java.lang.String\ getResponse()
+comment5.text=\n\ This\ method\ returns\ a\ random\ String.\n
+comment6.params=max
+comment6.target=int\ randomMax(int)
+comment6.text=\n\ This\ method\ generates\ a\ random\ number\ from\ 1\ to\ max\ (included).\n\ \n\ @pre\ max\ >\ 0.\n
+comment7.params=min\ max
+comment7.target=int\ randomNumber(int,\ int)
+comment7.text=\n\ \ This\ method\ generates\ a\ random\ int\ from\ min\ to\ max\ (both\ included)\n\ \ \n@pre\ min\ <\ max\ \n
+numComments=8

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Oferta
+comment0.text=\n\ Almacena\ los\ detalles\ de\ una\ oferta,\ \n\ en\ particular\ nombre\ del\ oferente\ y\ monto\ ofertado.\n\ \n\ @author\ N.\ Aguirre\n\ @version\ 0.1\n
+comment1.params=oferente\ monto
+comment1.target=Oferta(java.lang.String,\ int)
+comment1.text=\n\ Constructor\ de\ objetos\ de\ la\ clase\ Oferta.\n\ El\ oferente\ debe\ ser\ no\ nulo\ y\ no\ vac\u00EDo.\ \n\ El\ monto\ mayor\ a\ cero\ y\ menor\ o\ igual\ a\ oferta\ maxima.\n\ @param\ oferente\ es\ el\ oferente\ de\ la\ oferta\n\ @param\ monto\ es\ el\ monto\ de\ la\ oferta\n
+comment2.params=
+comment2.target=java.lang.String\ obtenerOferente()
+comment2.text=\n\ Retorna\ el\ oferente\ de\ la\ oferta.\n\ @return\ el\ ofente\ de\ la\ oferta.\n
+comment3.params=
+comment3.target=int\ obtenerMonto()
+comment3.text=\n\ Retorna\ el\ monto\ de\ la\ oferta.\n\ @return\ el\ monto\ de\ la\ oferta.\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\n\ Retorna\ los\ detalles\ de\ la\ oferta,\ oferente\ y\ monto,\ como\n\ cadena\ de\ caracteres.\n\ @return\ detalles\ de\ la\ oferta\ en\ una\ cadena\ de\ caracteres,\n\ usando\ el\ formato\ "<oferente>\ (oferta\ $<monto>)".\n
+comment5.params=
+comment5.target=boolean\ repOK()
+comment5.text=\n\ Invariante\ de\ clase\ para\ Oferta.\n\ Chequea\ que\ el\ oferente\ no\ sea\ null\ ni\ vac\u00EDo,\ y\ que\ el\ monto\ sea\n\ positivo\n
+numComments=6

@@ -1,0 +1,23 @@
+defaultIndent: '    '  # 4 espacios
+
+preserveBlankLines: 1  # No eliminar líneas en blanco
+
+lookForAlignDelims:
+  environments:
+    nd:
+      alignDelims: 0    # No intentes alinear columnas en el entorno nd
+
+customEnvironments:
+  include: 'customEnvironments.yaml'  # Importa reglas personalizadas
+
+modifyLineBreaks:
+  environments:
+    nd:
+      begin: 1
+      body: 1
+      end: 1
+
+indentRules:
+  environments:
+    nd:
+      indentation: '    '  # Asegúrate de que la indentación es consistente

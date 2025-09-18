@@ -1,0 +1,691 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+
+% \renewcommand\familydefault{\sfdefault}
+% \usepackage{tgheros}
+% \usepackage[defaultmono]{droidmono}
+\usepackage{mathrsfs}
+
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\usepackage{geometry}
+\geometry{left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+
+\usepackage[table]{xcolor} % Para colorear tablas
+\usepackage{colortbl}      % Necesario para \cellcolor
+\usepackage{array}         % Para centrar texto en columnas
+
+\setlength{\parskip}{1em}
+%\linespread{1.3}
+
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+% % custom theorems if needed
+% \newtheoremstyle{mytheor}
+%     {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+%     {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+%
+% \theoremstyle{mytheor}
+% \newtheorem{defi}{Definition}
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\Large \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Lógica Proposicional}
+\cfoot{}
+%\rfoot{página \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+% code listing settings
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    xleftmargin=2em,
+    framexleftmargin=2em,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=5pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+
+%% SET THEORY %%
+
+\usepackage{mathtools}
+\usepackage{xparse}
+\DeclarePairedDelimiterX\set[2]{\{}{\}}{\,#1 \;\delimsize\vert\; #2\,}
+
+\newcommand{\eqdef}{\stackrel{\text{def}}{=}}
+
+%% local labels in equations %%
+
+\usepackage{xargs}
+
+\makeatletter
+  \newcommandx{\Label}[1][1={\arabic{equation}}]%
+    {\refstepcounter{equation}(\theequation)~\ltx@label{{#1}} &&}
+\makeatother
+
+%% Proof trees %%
+
+\usepackage{fitch}
+
+\usepackage{etoolbox}
+\let\bbordermatrix\bordermatrix
+\patchcmd{\bbordermatrix}{8.75}{4.75}{}{}
+\patchcmd{\bbordermatrix}{\left(}{\left[}{}{}
+\patchcmd{\bbordermatrix}{\right)}{\right]}{}{}
+
+%% circled question mark %%
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=.7pt] (char) {\footnotesize #1};}}
+\newcommand{\result}{\circled{?}}
+
+%% Venn Diagrams %%
+
+\usepackage{venndiagram}
+
+%% LOGICAL SYMBOLS %%
+
+\newcommand{\liff}{\leftrightarrow}
+\DeclarePairedDelimiterX\FORALL[3]{(}{)}{\,\forall #1 : #2 : #3 \,}
+\DeclarePairedDelimiterX\EXISTS[3]{(}{)}{\,\exists #1 : #2 : #3 \,}
+\DeclarePairedDelimiterX\eval[1]{\llbracket}{\rrbracket}{#1}
+\newcommand{\sem}[1]{\eval{#1}^{\model}}
+\newcommand{\semv}[2]{\eval{#2}^{\model,#1}}
+\newcommand{\model}{\mathfrak{M}}
+\newcommand{\interpretation}{\mathscr{I}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\fun}{fun}
+\DeclareMathOperator{\rel}{rel}
+
+\DeclareRobustCommand{\svdots}{% s for `scaling'
+  \vcenter{%
+    \offinterlineskip
+    \vspace{5pt}
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}%
+  }%
+}
+
+%% COMPLETE BOX %%
+\def\fillbox{\quad[\qquad]\quad}
+
+%% NO INDENT %%
+
+\setlength{\parindent}{0pt}
+
+%%%% LOCALDEFS %%%%
+
+\newcommand{\ambassador}{\mathsf{ambassador}_1}
+\newcommand{\person}{\mathsf{person}_1}
+\newcommand{\country}{\mathsf{country}_1}
+\newcommand{\sentto}{\mathsf{sentto}_2}
+\newcommand{\knight}{\mathsf{knight}_1}
+\newcommand{\knave}{\mathsf{knave}_1}
+\newcommand{\alice}{\mathsf{alice}}
+\newcommand{\bob}{\mathsf{bob}}
+\newcommand{\tom}{\mathsf{tom}}
+\newcommand{\carl}{\mathsf{carl}}
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Práctica 4 - Cálculo ecuacional}
+
+\author{Lautaro Luna}
+
+\date{}
+
+\maketitle
+
+\vspace*{-1cm}
+
+\section{Demostraciones de cálculo de ecuaciones}
+
+\subsection{(principio de explosión)} \quad $\vdash \bot \to \varphi$
+
+\begin{enumerate}
+    \item $\bot \to \varphi \quad \equiv$ \textit{(implicación)}
+    \item $\bot \lor \varphi \equiv \varphi \quad \equiv$ \textit{(idempotencia)}
+    \item $\bot \lor \varphi \equiv \varphi \lor \bot \quad \equiv$ \textit{(distributividad)}
+    \item $(\bot \equiv \bot) \lor \varphi \quad \equiv$ \textit{(bivalencia)}
+    \item $(\neg \top \equiv \bot) \lor \varphi \quad \equiv$ \textit{(neq)}
+    \item $\neg (\top \equiv \varphi) \lor \varphi \quad \equiv$ \textit{(neutro)}
+    \item $\neg \varphi \lor \varphi \quad \equiv$ \textit{(neutro)}
+    \item $\neg \varphi \lor \varphi \equiv \top$
+\end{enumerate}
+
+\subsection{absorvente} \quad $\vdash \varphi \lor \top \equiv \top$
+
+\begin{enumerate}
+    \item $\varphi \lor \top$
+    \item $\varphi \lor (\varphi \equiv \varphi)$ \textit{(neutro)} $\top \equiv (\varphi \equiv \varphi)$
+    \item $\varphi \lor \varphi \equiv \varphi \lor \varphi$ \textit{(distributiva de la disyuncion)}
+    \item $\top$ \textit{(neutro)} $(\varphi \equiv \varphi) \equiv \top$
+\end{enumerate}
+
+\newpage
+
+\subsection{T9. (neutro) $\vdash \varphi \lor \bot \equiv \varphi$}
+
+\begin{enumerate}
+    \item $\varphi \lor \bot$
+    \item $\varphi \lor \neg \top$ \hfill (Teorema 5) ~~ $\bot \equiv \neg \top$
+    \item $\varphi \lor \neg (\varphi \equiv \varphi)$ \hfill (neutro) ~~ $\top \equiv (\varphi \equiv \varphi)$)
+    \item $\varphi \lor (\neg \varphi \equiv \varphi)$ \hfill (neq) $\neg (\varphi \equiv \psi) \equiv (\neg\varphi \equiv \psi)$
+    \item $\varphi \lor \neg \varphi \equiv \varphi \lor \varphi$ \hfill (distributiva)
+    \item $\top \equiv \varphi \lor \varphi$ \hfill (tercero excluido: $\varphi \lor \neg \varphi \equiv \top$)
+    \item $\top \equiv \varphi$ \hfill (idempotencia: $\varphi \lor \varphi \equiv \varphi$)
+    \item $\varphi$ \hfill (neutro: $(\top \equiv \varphi) \equiv \varphi$)
+\end{enumerate}
+
+\subsection{T12. (neutro) $\vdash \varphi \land \top \equiv \varphi$}
+
+\begin{enumerate}
+    \item $\varphi \land \top$
+    \item $\varphi \equiv \top \equiv \varphi \lor \top$ \hfill (regla dorada)
+    \item $\varphi \equiv \top \equiv \top$ \hfill T8. (absorvente)
+    \item $\varphi \equiv \top$ \hfill (neutro)
+    \item $\varphi$ \hfill (neutro)
+\end{enumerate}
+
+\subsection{T13. (conmutatividad) $\vdash \varphi \land \psi \equiv \psi \land \varphi$}
+
+\begin{enumerate}
+    \item $\varphi \land \psi$
+    \item $(\varphi \equiv \psi) \equiv \varphi \lor \psi$ \hfill (regla dorada)
+    \item $(\psi \equiv \varphi) \equiv \varphi \lor \psi$ \hfill (conmutatividad de $\equiv$)
+    \item $(\psi \equiv \varphi) \equiv \psi \lor \varphi$ \hfill (conmutatividad de $\lor$)
+    \item $\psi \land \varphi$ \hfill (regla dorada)
+\end{enumerate}
+
+\subsection{T14. (idempotencia) $\vdash \varphi \land \varphi \equiv \varphi$}
+
+\begin{enumerate}
+    \item $\varphi \land \varphi$
+    \item $(\varphi \equiv \varphi) \equiv \varphi \lor \varphi$ \hfill (regla dorada)
+    \item $\top \equiv \varphi \lor \varphi$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+    \item $\top \equiv \varphi$ \hfill (idempotencia $\lor$)
+    \item $\varphi$ \hfill (neutro)
+\end{enumerate}
+
+\subsection{T15. (absorción) $\vdash \varphi \lor (\varphi \land \psi) \equiv \varphi $}
+
+\begin{enumerate}
+    \item $\varphi \lor (\varphi \land \psi)$
+    \item $\varphi \lor ((\varphi \equiv \psi) \equiv \varphi \lor \psi))$ \hfill (regla dorada)
+    \item $\varphi \lor (\varphi \equiv \psi) \equiv \varphi \lor (\varphi \lor \psi)$ \hfill (distributividad de $\lor$ con $\equiv$)
+    \item $\varphi \lor \varphi \equiv \varphi \lor \psi \equiv \varphi \lor (\varphi \lor \psi)$ \hfill (distributividad de $\lor$ con $\equiv$)
+    \item $\varphi \equiv \varphi \lor \psi \equiv \varphi \lor (\varphi \lor \psi)$ \hfill (idempotencia)
+    \item $\varphi \land (\varphi \lor \psi)$ \hfill (regla dorada)
+    \item $\varphi$ \hfill (Teorema 16)
+\end{enumerate}
+
+\subsection{T16. (absorción) $\vdash \varphi \land (\varphi \lor \psi) \equiv \varphi $}
+
+\begin{enumerate}
+    \item $\varphi \land (\varphi \lor \psi)$
+    \item $(\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor (\varphi \lor \psi)$ \hfill (regla dorada)
+    \item $(\varphi \equiv \varphi \lor \psi) \equiv (\varphi \lor \varphi) \lor \psi$ \hfill (asociatividad de $\lor$)
+    \item $(\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor \psi$ \hfill (idempotencia)
+    \item $\varphi \equiv (\varphi \lor \psi \equiv \varphi \lor \psi)$ \hfill (asociatividad de $\equiv$)
+    \item $\varphi \equiv \top$ \hfill (neutro) $(\varphi \equiv \varphi) \equiv \top$
+    \item $\top \equiv \varphi$ \hfill (conmutatividad de $\equiv$)
+    \item $\varphi$ \hfill (neutro)
+\end{enumerate}
+
+\subsection{T17. (absorción) $\vdash \varphi \lor (\neg\varphi \land \psi) \equiv \varphi \lor \psi $}
+
+\begin{enumerate}
+    \item $\varphi \lor (\neg\varphi \land \psi)$
+    \item $\varphi \lor ((\neg\varphi \equiv \psi) \equiv \neg\varphi \lor \psi)$ \hfill (regla dorada)
+    \item $\varphi \lor (\neg\varphi \equiv \psi) \equiv \varphi \lor (\neg\varphi \lor \psi)$ \hfill (distributiva de $\lor$ con $\equiv$)
+    \item $(\varphi \lor \neg\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor (\neg\varphi \lor \psi)$ \hfill (distributiva de $\lor$ con $\equiv$)
+    \item $(\varphi \lor \neg\varphi \equiv \varphi \lor \psi) \equiv (\varphi \lor \neg\varphi) \lor (\varphi \lor \psi)$ \hfill (distributiva de $\lor$ con $\equiv$)
+    \item $(\top \equiv \varphi \lor \psi) \equiv (\varphi \lor \neg\varphi) \lor (\varphi \lor \psi)$ \hfill (tercero excluido)
+    \item $(\top \equiv \varphi \lor \psi) \equiv \top \lor (\varphi \lor \psi)$ \hfill (tercero excluido)
+    \item $(\top \equiv \varphi \lor \psi) \equiv (\varphi \lor \psi) \lor \top$ \hfill (conmutativa de $\lor$)
+    \item $(\top \equiv \varphi \lor \psi) \equiv \top$ \hfill (Teorema 8)
+    \item $\varphi \lor \psi \equiv \top$ \hfill (neutro)
+    \item $\top \equiv \varphi \lor \psi$ \hfill (conmutativa de $\equiv$)
+    \item $\varphi \lor \psi$ \hfill (neutro)
+\end{enumerate}
+
+
+\subsection{T18. (absorción) $\vdash \varphi \land (\neg\varphi \lor \psi) \equiv \varphi \land \psi $}
+
+\begin{enumerate}
+    \item $\varphi \land (\neg\varphi \lor \psi)$
+    \item $\varphi \land ((\varphi \equiv \bot)  \lor \psi)$ \hfill (Teorema 4) $\neg\varphi \equiv (\varphi \equiv \bot)$
+    \item $\varphi \land (\psi \lor (\varphi \equiv \bot))$ \hfill (conmutatividad de $\lor$)
+    \item $\varphi \land (\psi \lor \varphi \equiv \psi \lor \bot))$ \hfill (distributividad de $\lor$ con $\equiv$)
+    \item $\varphi \land (\psi \lor \varphi \equiv \psi)$ \hfill (Teorema 9) $\varphi \lor \bot \equiv \varphi$
+    \item $\varphi \equiv (\psi \lor \varphi \equiv \psi) \equiv \varphi \lor (\psi \lor \varphi \equiv \psi)$ \hfill (regla dorada)
+    \item $\varphi \equiv (\psi \lor \varphi \equiv \psi) \equiv (\varphi \lor (\psi \lor \varphi) \equiv \varphi \lor \psi)$ \hfill (distributividad de $\lor$ con $\equiv$)
+    \item $\varphi \equiv (\psi \lor \varphi \equiv \psi) \equiv (\varphi \lor (\varphi \lor \psi) \equiv \varphi \lor \psi)$ \hfill (conmutatividad de $\lor$)
+    \item $\varphi \equiv (\psi \lor \varphi \equiv \psi) \equiv ((\varphi \lor \varphi) \lor \psi \equiv \varphi \lor \psi)$ \hfill (asociatividad de $\lor$)
+    \item $\varphi \equiv (\psi \lor \varphi \equiv \psi) \equiv (\varphi \lor \psi \equiv \varphi \lor \psi)$ \hfill (idempotencia)
+
+    \item $\varphi \equiv (\psi \lor \varphi \equiv \psi) \equiv \top$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+
+    \item $\top \equiv \varphi \equiv (\psi \lor \varphi \equiv \psi)$ \hfill (conmutatividad de $\equiv$)
+
+    \item $\varphi \equiv (\psi \lor \varphi \equiv \psi)$ \hfill (neutro)
+    \item $\varphi \equiv (\psi \equiv \psi \lor \varphi)$ \hfill (conmutatividad de $\equiv$)
+    \item $(\varphi \equiv \psi) \equiv \psi \lor \varphi$ \hfill (asociatividad de $\equiv$)
+    \item $\varphi \land \psi$ \hfill (regla dorada)
+
+\end{enumerate}
+
+\subsection{T19 $\vdash \varphi \lor \psi \equiv \varphi \lor \neg\psi \equiv \varphi $}
+
+\begin{enumerate}
+    \item $\varphi \lor \psi \equiv \varphi \lor \neg\psi$
+    \item $\varphi \lor \psi \equiv \varphi \lor (\psi \equiv \bot)$ \hfill (Teorema 4)
+    \item $\varphi \lor \psi \equiv (\varphi \lor \psi \equiv \varphi \lor \bot)$ \hfill (distributividad de $\lor$ con $\equiv$)
+    \item $(\varphi \lor \psi \equiv \varphi \lor \psi) \equiv \varphi \lor \bot$ \hfill (asociatividad de $\equiv$)
+    \item $\top \equiv \varphi \lor \bot$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+    \item $\varphi \lor \bot$ \hfill (neutro)
+    \item $\varphi$ \hfill (neutro) $\varphi \lor \bot \equiv \varphi$
+\end{enumerate}
+
+\subsection{T20 (De Morgan) $\vdash \neg(\varphi \land \psi) \equiv \neg\varphi \lor \neg\psi$}
+
+\begin{enumerate}
+    \item $\neg(\varphi \land \psi)$
+    \item $\neg((\varphi \equiv \psi) \equiv \varphi \lor \psi)$ \hfill (regla dorada)
+    \item $\neg((\psi \equiv \varphi) \equiv \varphi \lor \psi)$ \hfill (conmutatividad de $\equiv$)
+    \item $\neg(\psi \equiv (\varphi \equiv \varphi \lor \psi))$ \hfill (asociatividad de $\equiv$)
+    \item $\neg(\psi \equiv \varphi \lor \neg\psi)$ \hfill (Teorema 19) $(\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor \neg\psi$
+
+    \item $\neg\psi \equiv \varphi \lor \neg\psi$ \hfill (neq)
+    \item $\neg\psi \equiv \neg\psi \lor \varphi$ \hfill (conmutatividad de $\lor$)
+    \item $\neg\psi \lor \neg\varphi$ \hfill (Teorema 19) $(\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor \neg\psi$
+
+
+\end{enumerate}
+
+\subsection{T21 (De Morgan) $\vdash \neg(\varphi \lor \psi) \equiv \neg\varphi \land \neg\psi$}
+
+\begin{enumerate}
+    \item $\neg\varphi \land \neg\psi$
+    \item $(\neg\varphi \equiv \neg\psi) \equiv \neg\varphi \lor \neg\psi$ \hfill (regla dorada)
+    \item $(\neg\varphi \equiv \neg\psi) \equiv \neg\psi \lor \neg\varphi$ \hfill (conmutatividad de $\lor$)
+    \item $\neg\varphi \equiv (\neg\psi \equiv \neg\psi \lor \neg\varphi)$ \hfill (asociatividad de $\equiv$)
+    \item $\neg\varphi \equiv (\neg\psi \lor \neg\neg\varphi)$ \hfill (Teorema 19) $(\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor \neg\psi$
+    \item $\neg\varphi \equiv (\neg\psi \lor \varphi)$ \hfill (Teorema 3)
+    \item $\neg\varphi \equiv (\varphi \lor \neg\psi)$ \hfill (conmutatividad de $\lor$)
+    \item $\neg(\varphi \equiv (\varphi \lor \neg\psi))$ \hfill (neq)
+    \item $\neg(\varphi \lor \psi)$ \hfill (Teorema 19) $(\varphi \equiv \varphi \lor \neg\psi) \equiv \varphi \lor \psi$
+
+\end{enumerate}
+
+\subsection{T22 (distributividad $\lor\lor$) $\vdash \varphi \lor (\psi \lor \chi) \equiv (\varphi \lor \psi) \lor (\varphi \lor \chi)$}
+
+\begin{enumerate}
+    \item $\varphi \lor (\psi \lor \chi)$
+    \item $(\varphi \lor \varphi) \lor (\psi \lor \chi)$ \hfill (idempotencia)
+    \item $(\varphi \lor (\varphi \lor (\psi \lor \chi))$ \hfill (asociatividad $\lor$)
+    \item $(\varphi \lor ((\varphi \lor \psi) \lor \chi)$ \hfill (asociatividad $\lor$)
+    \item $(\varphi \lor (\chi \lor (\varphi \lor \psi))$ \hfill (conmutatividad $\lor$)
+    \item $(\varphi \lor \chi) \lor (\varphi \lor \psi)$ \hfill (asociatividad $\lor$)
+    \item $(\varphi \lor \psi) \lor (\varphi \lor \chi)$ \hfill (conmutatividad $\lor$)
+
+\end{enumerate}
+
+\subsection{T23 (distributividad $\land\land$) $\vdash \varphi \land (\psi \land \chi) \equiv (\varphi \land \psi) \land (\varphi \land \chi)$}
+
+\begin{enumerate}
+    \item $(\varphi \land \psi) \land (\varphi \land \chi)$
+    \item $(\varphi \land (\psi \land \varphi)) \land \chi$ \hfill (asociatividad $\land$)
+    \item $(\varphi \land (\varphi \land \psi)) \land \chi$ \hfill (conmutatividad $\land$)
+    \item $((\varphi \land \varphi) \land \psi) \land \chi$ \hfill (asociatividad $\land$)
+    \item $(\varphi \land \psi) \land \chi$ \hfill (Teorema 14)
+    \item $\varphi \land (\psi \land \chi)$ \hfill (asociatividad $\land$)
+\end{enumerate}
+
+\subsection{T24 (distributividad $\land\lor$) $\vdash \varphi \land (\psi \lor \chi) \equiv (\varphi \land \psi) \lor (\varphi \land \chi)$}
+
+\begin{enumerate}
+    \item $\varphi \land (\psi \lor \chi)$
+    \item $(\varphi \equiv (\psi \lor \chi)) \equiv \varphi \lor (\psi \lor \chi)$
+\end{enumerate}
+
+
+\subsection{T25 (distributividad $\lor\land$) $\vdash \varphi \lor (\psi \land \chi) \equiv (\varphi \lor \psi) \land (\varphi \lor \chi)$}
+
+\begin{enumerate}
+    \item $(\varphi \lor \psi) \land (\varphi \lor \chi)$
+    \item $((\varphi \lor \psi) \equiv (\varphi \lor \chi)) \equiv (\varphi \lor \psi) \lor (\varphi \lor \chi)$ \hfill (regla dorada)
+    \item $((\varphi \lor \psi) \equiv (\varphi \lor \chi)) \equiv \varphi \lor (\psi \lor \chi)$ \hfill (Teorema 22)
+    \item $\varphi \lor (\psi \equiv \chi) \equiv \varphi \lor (\psi \lor \chi)$ \hfill (distributividad de $\lor$ con $\equiv$)
+    \item $\varphi \lor ((\psi \equiv \chi) \equiv (\psi \lor \chi))$ \hfill (distributividad de $\lor$ con $\equiv$)
+    \item $\varphi \lor (\psi \land \chi)$ \hfill (regla dorada)
+\end{enumerate}
+
+\subsection{T26 (reflexividad) $\vdash \varphi \rightarrow \varphi $}
+
+\begin{enumerate}
+    \item $\varphi \rightarrow \varphi$
+    \item $(\varphi \lor \varphi \equiv \varphi)$ \hfill (implicacion)
+    \item $(\varphi \equiv \varphi)$ \hfill (idempotencia)
+    \item $\top$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+\end{enumerate}
+
+\subsection{T27 $\vdash \varphi \rightarrow \psi \equiv \neg\varphi \lor \psi $}
+
+\begin{enumerate}
+    \item $\varphi \rightarrow \psi$
+    \item $(\varphi \lor \psi \equiv \psi)$ \hfill (implicacion)
+    \item $(\psi \equiv \varphi \lor \psi)$ \hfill (conmutatividad de $\equiv$)
+    \item $(\psi \equiv \psi \lor \varphi)$ \hfill (conmutatividad de $\lor$)
+    \item $\psi \lor \neg\varphi$ \hfill (Teorema 19) $(\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor \neg\psi$
+    \item $\neg\varphi \lor \psi$ \hfill (conmutatividad de $\lor$)
+\end{enumerate}
+
+\subsection{T28 $\vdash \neg(\varphi \rightarrow \psi) \equiv \varphi \land \neg\psi $}
+
+\begin{enumerate}
+    \item $\neg(\varphi \rightarrow \psi)$
+    \item $\neg(\varphi \lor \psi \equiv \psi)$ \hfill (implicacion)
+    \item $\neg(\psi \equiv \varphi \lor \psi)$ \hfill (conmutatividad de $\equiv$)
+    \item $\neg(\psi \equiv \psi \lor \varphi)$ \hfill (conmutatividad de $\lor$)
+    \item $\neg(\psi \lor \neg\varphi)$ \hfill (Teorema 19) $(\varphi \equiv \varphi \lor \psi) \equiv \varphi \lor \neg\psi$
+    \item $\neg(\neg\varphi \lor \psi)$ \hfill (conmutatividad de $\lor$)
+    \item $\neg\neg\varphi \land \neg\psi$ \hfill (Teorema 21)
+    \item $\varphi \land \neg\psi$ \hfill (Teorema 3)
+\end{enumerate}
+
+\subsection{T29 $\vdash \varphi \land \psi \rightarrow \varphi$}
+
+\begin{enumerate}
+    \item $\varphi \land \psi \rightarrow \varphi$
+    \item $(\varphi \land \psi) \lor \varphi \equiv \varphi$ \hfill (implicacion)
+    \item $\varphi \lor (\varphi \land \psi) \equiv \varphi$ \hfill (conmutatividad de $\lor$)
+    \item $\varphi \equiv \varphi$ \hfill (Teorema 15)
+    \item $\top$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+\end{enumerate}
+
+\subsection{T30 $\vdash \varphi \rightarrow \varphi \lor \psi$}
+
+\begin{enumerate}
+    \item $\varphi \rightarrow \varphi \lor \psi$
+    \item $\varphi \lor (\varphi \lor \psi) \equiv (\varphi \lor \psi)$ \hfill (implicacion)
+    \item $(\varphi \lor \varphi) \lor \psi \equiv (\varphi \lor \psi)$ \hfill (asociatividad de $\lor$)
+    \item $(\varphi \lor \psi) \equiv (\varphi \lor \psi)$ \hfill (idempotencia)
+    \item $\top$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+\end{enumerate}
+
+\subsection{T31 $\vdash \varphi \rightarrow \psi \equiv \neg\psi \rightarrow \neg\varphi$}
+
+\begin{enumerate}
+    \item $\neg\psi \rightarrow \neg\varphi$
+    \item $\neg\psi \lor \neg\varphi \equiv \neg\varphi$ \hfill (implicacion)
+    \item $\neg(\neg\psi \lor \neg\varphi) \equiv \neg\neg\varphi$ \hfill (Teorema 6, contrapositiva)
+    \item $\neg(\neg\psi \lor \neg\varphi) \equiv \varphi$ \hfill (Teorema 3, Doble neg.)
+    \item $\neg\neg(\psi \land \varphi) \equiv \varphi$ \hfill (Teorema 2, De Morgan)
+    \item $(\psi \land \varphi) \equiv \varphi$ \hfill (Teorema 3, Doble neg.)
+    \item $(\psi \equiv \varphi \equiv \psi \lor \varphi) \equiv \varphi$ \hfill (regla dorada)
+    \item $\varphi \equiv (\psi \equiv \varphi \equiv \psi \lor \varphi)$ \hfill (conmutatividad de $\equiv$)
+    \item $\varphi \equiv (\varphi \equiv \psi \equiv \psi \lor \varphi)$ \hfill (conmutatividad de $\equiv$)
+    \item $(\varphi \equiv \varphi) \equiv \psi \equiv \psi \lor \varphi$ \hfill (asociatividad de $\equiv$)
+    \item $\top \equiv \psi \equiv \psi \lor \varphi$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+    \item $\psi \equiv \psi \lor \varphi$ \hfill (neutro)
+    \item $\psi \lor \varphi \equiv \psi$ \hfill (conmutatividad de $\equiv$)
+    \item $\varphi \lor \psi \equiv \psi$ \hfill (conmutatividad de $\lor$)
+    \item $\varphi \rightarrow \psi$ \hfill (implicacion)
+\end{enumerate}
+
+\subsection{T32 $\vdash \varphi \rightarrow (\psi \rightarrow \chi) \equiv \varphi \land \psi \rightarrow \chi$}
+
+\begin{enumerate}
+    \item $\varphi \rightarrow (\psi \rightarrow \chi)$
+    \item $\neg\varphi \lor (\psi \rightarrow \chi)$ \hfill (Teorema 27)
+    \item $\neg\varphi \lor (\neg\psi \lor \chi)$ \hfill (Teorema 27)
+    \item $(\neg\varphi \lor \neg\psi) \lor \chi$ \hfill (asociatividad de $\lor$)
+    \item $\neg(\varphi \land \psi) \lor \chi$ \hfill (Teorema 20, De Morgan)
+    \item $\varphi \land \psi \rightarrow \chi$ \hfill (Teorema 27) $\neg\phi \lor \psi \equiv \phi \rightarrow \psi$
+\end{enumerate}
+
+\subsection{T33 $\vdash (\varphi \rightarrow \psi) \land (\psi \rightarrow \chi) \rightarrow (\varphi \rightarrow \chi)$}
+
+\begin{enumerate}
+    \item $(\varphi \rightarrow \psi) \land (\psi \rightarrow \chi) \rightarrow (\varphi \rightarrow \chi)$
+    \item $\neg((\varphi \rightarrow \psi) \land (\psi \rightarrow \chi)) \lor (\varphi \rightarrow \chi)$ \hfill (Teorema 27)
+    \item $\neg(\varphi \rightarrow \psi) \lor \neg(\psi \rightarrow \chi) \lor (\varphi \rightarrow \chi)$ \hfill (Teorema 20)
+    \item $\neg(\varphi \rightarrow \psi) \lor \neg(\psi \rightarrow \chi) \lor (\neg\varphi \lor \chi)$ \hfill (Teorema 27)
+    \item $(\varphi \land \neg\psi) \lor (\psi \land \neg\chi) \lor (\neg\varphi \lor \chi)$ \hfill (Teorema 28)
+    \item $(\varphi \land \neg\psi) \lor (\neg\varphi \lor \chi) \lor (\psi \land \neg\chi)$ \hfill (conmutatividad)
+    \item $(\varphi \lor (\neg\varphi \lor \chi)) \land (\neg\psi \lor (\neg\varphi \lor \chi)) \lor (\psi \land \neg\chi)$ \hfill (distributividad $\lor\land$)
+    \item $((\varphi \lor \neg\varphi) \lor \chi) \land (\neg\psi \lor (\neg\varphi \lor \chi)) \lor (\psi \land \neg\chi)$ \hfill (asociatividad)
+    \item $(\top \lor \chi) \land (\neg\psi \lor (\neg\varphi \lor \chi)) \lor (\psi \land \neg\chi)$ \hfill (idempotencia)
+    \item $\top \land (\neg\psi \lor (\neg\varphi \lor \chi)) \lor (\psi \land \neg\chi)$ \hfill (Teorema 8)
+    \item $\neg\psi \lor (\neg\varphi \lor \chi) \lor (\psi \land \neg\chi)$ \hfill (Teorema 12)
+    \item $(\neg\psi \lor \neg\varphi \lor \chi) \lor (\psi \land \neg\chi)$ \hfill (asociatividad)
+    \item $(\neg\psi \lor \neg\varphi \lor \chi \lor \psi) \land (\neg\psi \lor \neg\varphi \lor \chi \lor \neg\chi)$ \hfill (distributividad $\lor\land$)
+    \item $((\neg\psi \lor \psi) \lor \neg\varphi \lor \chi) \land (\neg\psi \lor \neg\varphi \lor (\chi \lor \neg\chi))$ \hfill (conmutatividad y asociatividad)
+    \item $(\top \lor (\neg\varphi \lor \chi)) \land (\neg\psi \lor (\neg\varphi \lor \top))$ \hfill (tercero excluido y asociatividad)
+    \item $\top \land \top$ \hfill (Teorema 8)
+    \item $\top$ \hfill (Teorema 12)
+\end{enumerate}
+
+\subsection{T34 $\vdash (\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi) \equiv \varphi \equiv \psi$}
+
+\begin{enumerate}
+    \item $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi) \equiv \varphi \equiv \psi$
+    \item $(\neg\varphi \lor \psi) \land (\psi \rightarrow \varphi) \equiv \varphi \equiv \psi$ \hfill (Teorema 27)
+    \item $(\neg\varphi \lor \psi) \land (\neg\psi \lor \varphi) \equiv \varphi \equiv \psi$ \hfill (Teorema 27)
+    \item $(\neg\varphi \lor \psi) \equiv (\neg\psi \lor \varphi) \equiv (\neg\varphi \lor \psi) \lor (\neg\psi \lor \varphi) \equiv \varphi \equiv \psi$ \hfill (regla dorada)
+    \item $(\neg\varphi \lor \psi) \equiv (\neg\psi \lor \varphi) \equiv (\neg\varphi \lor (\psi \lor (\neg\psi \lor \varphi)) \equiv \varphi \equiv \psi$ \hfill (asociatividad)
+    \item $(\neg\varphi \lor \psi) \equiv (\neg\psi \lor \varphi) \equiv (\neg\varphi \lor (\psi \lor \neg\psi) \lor \varphi) \equiv \varphi \equiv \psi$ \hfill (asociatividad)
+    \item $(\neg\varphi \lor \psi) \equiv (\neg\psi \lor \varphi) \equiv (\neg\varphi \lor (\top \lor \varphi) \equiv \varphi \equiv \psi$ \hfill (idempotencia)
+    \item $(\neg\varphi \lor \psi) \equiv (\neg\psi \lor \varphi) \equiv \neg\varphi \lor \top \equiv \varphi \equiv \psi$ \hfill (Teorema 8)
+    \item $(\neg\varphi \lor \psi) \equiv (\neg\psi \lor \varphi) \equiv \top \equiv \varphi \equiv \psi$ \hfill (Teorema 8)
+    \item $\top \equiv (\neg\varphi \lor \psi) \equiv (\neg\psi \lor \varphi) \equiv \varphi \equiv \psi$ \hfill (distributividad)
+    \item $\neg\varphi \lor \psi \equiv \neg\psi \lor \varphi \equiv \varphi \equiv \psi$ \hfill (neutro)
+    \item $\neg\varphi \lor \psi \equiv (\neg\psi \lor \varphi \equiv \varphi) \equiv \psi$ \hfill (asociatividad)
+    \item $\neg\varphi \lor \psi \equiv \psi \lor \varphi \equiv \psi$ \hfill (Teorema 19)
+    \item $\psi \equiv \neg\varphi \lor \psi \equiv \psi \lor \varphi$ \hfill (distributividad)
+    \item $(\psi \equiv \neg\varphi \lor \psi) \equiv \psi \lor \varphi$ \hfill (asociatividad)
+    \item $(\psi \equiv \psi \lor \neg\varphi) \equiv \psi \lor \varphi$ \hfill (conmutatividad)
+    \item $\psi \lor \varphi \equiv \psi \lor \varphi$ \hfill (Teorema 19)
+    \item $\top$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+
+\end{enumerate}
+
+\subsection{T35 $\vdash \varphi \land (\varphi \equiv \psi) \equiv \varphi \land \psi$}
+
+\begin{enumerate}
+    \item $\varphi \land (\varphi \equiv \psi)$
+    \item $(\varphi \equiv (\varphi \equiv \psi)) \equiv \varphi \lor (\varphi \equiv \psi)$ \hfill (regla dorada)
+    \item $((\varphi \equiv \varphi) \equiv \psi) \equiv \varphi \lor (\varphi \equiv \psi)$ \hfill (asociatividad de $\equiv$)
+    \item $(\top \equiv \psi) \equiv \varphi \lor (\varphi \equiv \psi)$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+    \item $\psi \equiv \varphi \lor (\varphi \equiv \psi)$ \hfill (neutro)
+    \item $\psi \equiv \varphi \lor \varphi \equiv \varphi \lor \psi$ \hfill (distributividad de $\lor$)
+    \item $\psi \equiv \varphi \equiv \varphi \lor \psi$ \hfill (idempotencia)
+    \item $\varphi \equiv \psi \equiv \varphi \lor \psi$ \hfill (conmutatividad de $\equiv$)
+    \item $\varphi \land \psi$ \hfill (regla dorada)
+\end{enumerate}
+
+\subsection{T36 (modus ponens) $\vdash \varphi \land (\varphi \rightarrow \psi) \rightarrow \psi$}
+
+\begin{enumerate}
+    \item $\varphi \land (\varphi \rightarrow \psi) \rightarrow \psi$
+    \item $\varphi \land (\neg\varphi \lor \psi) \rightarrow \psi$ \hfill (Teorema 27)
+    \item $(\varphi \land \neg\varphi) \lor (\varphi \land \psi) \rightarrow \psi$ \hfill (distributividad $\land\lor$)
+    \item $\bot \lor (\varphi \land \psi) \rightarrow \psi$ \hfill (crear teorema) $\varphi \land \neg\varphi \equiv \bot$
+    \item $(\varphi \land \psi) \lor \bot \rightarrow \psi$ \hfill (conmutatividad de $\lor$)
+    \item $\varphi \land \psi \rightarrow \psi$ \hfill (Teorema 9, neutro)
+    \item $\neg(\varphi \land \psi) \lor \psi$ \hfill (Teorema 27)
+    \item $(\neg\varphi \lor \neg\psi) \lor \psi$ \hfill (Teorema 20, De Morgan)
+    \item $\neg\varphi \lor (\neg\psi \lor \psi)$ \hfill (asociatividad de $\lor$)
+    \item $\neg\varphi \lor (\psi \lor \neg\psi)$ \hfill (conmutatividad de $\lor$)
+    \item $\neg\varphi \lor \top$ \hfill (tercero excuido)
+    \item $\top$ \hfill (Teorema 8, absorvente)
+\end{enumerate}
+
+\subsection{T36.5 (contradiccion) $\vdash \varphi \land \neg\varphi \equiv \bot$}
+
+\begin{enumerate}
+    \item $\varphi \land \neg\varphi$
+    \item $\varphi \equiv \neg\varphi \equiv \varphi \lor \neg\varphi$ \hfill (regla dorada)
+    \item $\varphi \equiv \neg\varphi \equiv \top$ \hfill (tercero excluido)
+    \item $\top \equiv \varphi \equiv \neg\varphi$ \hfill (conmutatividad de $\equiv$)
+    \item $\varphi \equiv \neg\varphi$ \hfill (neutro)
+    \item $\neg\varphi \equiv \varphi$ \hfill (conmutatividad de $\equiv$)
+    \item $\neg(\varphi \equiv \varphi)$ \hfill (neq)
+    \item $\neg\top$ \hfill (neutro) $\top \equiv (\varphi \equiv \varphi)$
+    \item $\bot$ \hfill (Teorema 5)
+\end{enumerate}
+
+\subsection{T37 (modus tollens) $\vdash (\varphi \rightarrow \psi) \land \neg\psi \rightarrow \neg\varphi$}
+
+\begin{enumerate}
+    \item $(\varphi \rightarrow \psi) \land \neg\psi \rightarrow \neg\varphi$
+    \item $(\neg\varphi \lor \psi) \land \neg\psi \rightarrow \neg\varphi$ \hfill (Teorema 27)
+    \item $(\neg\varphi \land \neg\psi) \lor (\psi \land \neg\psi) \rightarrow \neg\varphi$ \hfill (T24, distributividad $\land\lor$)
+    \item $(\neg\varphi \land \neg\psi) \lor \bot \rightarrow \neg\varphi$ \hfill (T36.5: contradicción $\psi \land \neg\psi \equiv \bot$)
+    \item $\neg\varphi \land \neg\psi \rightarrow \neg\varphi$ \hfill (Teorema 9, neutro)
+    \item $\neg(\varphi \lor \psi) \rightarrow \neg\varphi$ \hfill (Teorema 20, De Morgan)
+    \item $\varphi \rightarrow \varphi \lor \psi$ \hfill (Teorema 31)
+    \item $\neg\varphi \lor (\varphi \lor \psi)$ \hfill (Teorema 27)
+    \item $(\neg\varphi \lor \varphi) \lor \psi$ \hfill (asociatividad de $\lor$)
+    \item $(\varphi \lor \neg\varphi) \lor \psi$ \hfill (conmutatividad de $\lor$)
+    \item $\top \lor \psi$ \hfill (tercero excluido)
+    \item $\psi \lor \top$ \hfill (conmutatividad de $\lor$)
+    \item $\top $ \hfill (Teorema 9, neutro)
+\end{enumerate}
+
+\subsection{T38 $\vdash (\varphi \rightarrow \psi) \rightarrow (\varphi \land \chi \rightarrow \psi \land \chi)$}
+
+\begin{enumerate}
+    \item $(\varphi \rightarrow \psi) \rightarrow (\varphi \land \chi \rightarrow \psi \land \chi)$
+    \item $(\neg\varphi \lor \psi) \rightarrow (\neg(\varphi \land \chi) \lor (\psi \land \chi))$ \hfill (Teorema 27, aplicada dos veces)
+    \item $\neg(\neg\varphi \lor \psi) \lor (\neg(\varphi \land \chi) \lor (\psi \land \chi))$ \hfill (Teorema 27)
+    \item $(\neg\neg\varphi \land \neg\psi) \lor (\neg(\varphi \land \chi) \lor (\psi \land \chi))$ \hfill (Teorema 21, De Morgan)
+    \item $(\varphi \land \neg\psi) \lor (\neg(\varphi \land \chi) \lor (\psi \land \chi))$ \hfill (Teorema 3, doble negación)
+    \item $(\varphi \land \neg\psi) \lor (\neg\varphi \lor \neg\chi) \lor (\psi \land \chi)$ \hfill (Teorema 20, De Morgan)
+    \item $((\varphi \land \neg\psi) \lor \neg\varphi) \lor (\neg\chi \lor (\psi \land \chi))$ \hfill (asociatividad de $\lor$)
+    \item $((\neg\varphi \lor \varphi) \land (\neg\varphi \lor \neg\psi)) \lor (\neg\chi \lor (\psi \land \chi))$ \hfill (distributividad $\lor\land$)
+    \item $((\varphi \lor \neg\varphi) \land (\neg\varphi \lor \neg\psi)) \lor (\neg\chi \lor (\psi \land \chi))$ \hfill (conmutatividad de $\lor$)
+    \item $(\top \land (\neg\varphi \lor \neg\psi)) \lor (\neg\chi \lor (\psi \land \chi))$ \hfill (Teorema 20: $\varphi \lor \neg\varphi \equiv \top$)
+    \item $(\neg\varphi \lor \neg\psi) \lor (\neg\chi \lor (\psi \land \chi))$ \hfill (Teorema 12, neutro)
+    \item $(\neg\varphi \lor \neg\psi) \lor (\psi \lor \neg\chi) \land (\chi \lor \neg\chi)$ \hfill (distributividad $\lor\land$)
+    \item $(\neg\varphi \lor \neg\psi) \lor (\psi \lor \neg\chi) \land \top$ \hfill (Teorema 20)
+    \item $(\neg\varphi \lor \neg\psi) \lor (\psi \lor \neg\chi)$ \hfill (Teorema 12)
+    \item $(\neg\psi \lor \neg\varphi) \lor (\psi \lor \neg\chi)$ \hfill (conmutatividad de $\lor$)
+    \item $(\neg\psi \lor \psi) \lor (\neg\varphi \lor \neg\chi)$ \hfill (conutatividad y asociatividad de $\lor$)
+    \item $(\psi \lor \neg\psi) \lor (\neg\varphi \lor \neg\chi)$ \hfill (conmutatividad de $\lor$)
+    \item $\top \lor (\neg\varphi \lor \neg\chi)$ \hfill (tercero excluido)
+    \item $(\neg\varphi \lor \neg\chi) \lor \top$ \hfill (conmutatividad de $\lor$)
+    \item $\top$ \hfill (Teorema 8, absorvente)
+\end{enumerate}
+
+\subsection{T39 $\vdash (\varphi \rightarrow \psi) \rightarrow (\varphi \lor \chi \rightarrow \psi \lor \chi)$}
+
+\begin{enumerate}
+    \item $(\varphi \rightarrow \psi) \rightarrow (\varphi \lor \chi \rightarrow \psi \lor \chi)$
+    \item $(\neg\varphi \lor \psi) \rightarrow (\neg(\varphi \lor \chi) \lor (\psi \lor \chi))$ \hfill (T27 aplicada dos veces)
+    \item $\neg(\neg\varphi \lor \psi) \lor (\neg(\varphi \lor \chi) \lor (\psi \lor \chi))$ \hfill (Teorema 27)
+    \item $(\neg\neg\varphi \land \neg\psi) \lor (\neg(\varphi \lor \chi) \lor (\psi \lor \chi))$ \hfill (Teorema 21: De Morgan)
+    \item $(\varphi \land \neg\psi) \lor (\neg(\varphi \lor \chi) \lor (\psi \lor \chi))$ \hfill (Teorema 3: doble negación)
+    \item $(\varphi \land \neg\psi) \lor (\neg\varphi \land \neg\chi) \lor (\psi \lor \chi)$ \hfill (Teorema 21: De Morgan)
+    \item $(\varphi \land \neg\psi) \lor (\psi \lor \chi) \lor(\neg\varphi \land \neg\chi) $ \hfill (conmutatividad)
+    \item $((\varphi \land \neg\psi) \lor \psi) \lor (\chi \lor(\neg\varphi \land \neg\chi)) $ \hfill (asociatividad)
+    \item $(\psi \lor (\varphi \land \neg\psi)) \lor (\chi \lor(\neg\varphi \land \neg\chi)) $ \hfill (conmutatividad)
+    \item $((\psi \lor \varphi) \land (\psi \lor \neg\psi)) \lor (\chi \lor(\neg\varphi \land \neg\chi)) $ \hfill (distributividad $\lor\land$)
+    \item $((\psi \lor \varphi) \land \top) \lor (\chi \lor(\neg\varphi \land \neg\chi)) $ \hfill (idempotencia)
+    \item $(\psi \lor \varphi) \lor (\chi \lor(\neg\varphi \land \neg\chi)) $ \hfill (Teorema 12)
+    \item $(\psi \lor \varphi) \lor ((\chi \lor \neg\varphi) \land (\chi \lor \neg\chi)) $ \hfill (distributividad $\lor\land$)
+    \item $(\psi \lor \varphi) \lor ((\chi \lor \neg\varphi) \land \top) $ \hfill (idempotencia)
+    \item $(\psi \lor \varphi) \lor (\chi \lor \neg\varphi) $ \hfill (Teorema 12)
+    \item $(\psi \lor (\varphi \lor (\chi \lor \neg\varphi)) $ \hfill (asociatividad)
+    \item $(\psi \lor (\varphi \lor (\neg\varphi \lor \chi)) $ \hfill (conmutatividad)
+    \item $(\psi \lor ((\varphi \lor \neg\varphi) \lor \chi)) $ \hfill (asociatividad)
+    \item $(\psi \lor (\top \lor \chi)) $ \hfill (idempotencia)
+    \item $(\psi \lor (\chi \lor \top)) $ \hfill (conmutatividad)
+    \item $\psi \lor \top $ \hfill (Teorema 8)
+    \item $\top$ \hfill (Teorema 8)
+
+\end{enumerate}
+
+\subsection{T40 $\vdash \varphi \rightarrow \bot \equiv \neg\varphi$}
+
+\begin{enumerate}
+    \item $\varphi \rightarrow \bot$
+    \item $\neg\varphi \lor \bot$ \hfill (Teorema 27)
+    \item $\neg\varphi$ \hfill (Teorema 9)
+\end{enumerate}
+
+\subsection{T(A) $\vdash (\forall i : \varphi : \psi) \land (\forall i : \chi : \psi) \equiv (\forall i : \varphi \lor \chi : \psi)$}
+
+\begin{enumerate}
+    \item $(\forall i : \varphi : \psi) \land (\forall i : \chi : \psi)$
+\end{enumerate}
+
+
+\subsection{T(A) $\vdash (\forall i : \varphi : \psi) \land (\forall i : \chi : \psi) \equiv (\forall i : \varphi \lor \chi : \psi)$}
+
+\begin{enumerate}
+    \item $(\forall i : \varphi \lor \chi : \psi)$
+
+\end{enumerate}
+
+\end{document}

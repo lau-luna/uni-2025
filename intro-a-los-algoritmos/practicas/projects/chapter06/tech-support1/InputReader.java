@@ -8,6 +8,7 @@ import java.util.Scanner;
  * @author     Michael Kölling and David J. Barnes
  * @version    0.1 (2016.02.29)
  */
+import java.util.HashSet;
 public class InputReader
 {
     private Scanner reader;
@@ -26,11 +27,17 @@ public class InputReader
      *
      * @return  A String typed by the user.
      */
-    public String getInput()
+    public HashSet<String> getInput()
     {
         System.out.print("> ");         // print prompt
-        String inputLine = reader.nextLine();
+        String inputLine = reader.nextLine().trim().toLowerCase();
 
-        return inputLine;
+        String[] wordArray =  inputLine.split(" ");
+        
+        HashSet<String> words = new HashSet<String>();
+        for (String word :  wordArray)
+            words.add(word);
+
+        return words;
     }
 }

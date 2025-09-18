@@ -19,10 +19,10 @@ public class NumberDisplay
      * Constructor for objects of class NumberDisplay.
      * Set the limit at which the display rolls over.
      */
-    public NumberDisplay(int rollOverLimit)
+    public NumberDisplay(int rollOverLimit, int value)
     {
         limit = rollOverLimit;
-        value = 0;
+        this.value = value;
     }
 
     /**
@@ -33,18 +33,30 @@ public class NumberDisplay
         return value;
     }
 
+    public int getLimit(){
+        return this.limit;
+    }
+
     /**
      * Return the display value (that is, the current value as a two-digit
      * String. If the value is less than ten, it will be padded with a leading
      * zero).
      */
-    public String getDisplayValue()
+    public String getDisplayValue(boolean is24hour)
     {
+        int value = this.value;
+
+        if (!is24hour){
+            if (value > 12){
+                value -= 12;
+            }
+        }
+
         if(value < 10) {
             return "0" + value;
         }
         else {
-            return "" + value;
+            return value + "";
         }
     }
 
@@ -54,9 +66,9 @@ public class NumberDisplay
      */
     public void setValue(int replacementValue)
     {
-        if((replacementValue >= 0) && (replacementValue < limit)) {
-            value = replacementValue;
-        }
+        assert replacementValue >= 0 : "New value must be greater or equal than 0";
+        assert replacementValue < limit : "New value must be lesser than the limit";
+        value = replacementValue;
     }
 
     /**
@@ -67,4 +79,12 @@ public class NumberDisplay
     {
         value = (value + 1) % limit;
     }
+
 }
+
+
+/*
+ * assert n <= 0 : "Error";
+ * temp = n;
+ *:
+ */

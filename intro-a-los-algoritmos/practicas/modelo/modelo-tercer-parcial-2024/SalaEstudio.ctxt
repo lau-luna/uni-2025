@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=SalaEstudio
+comment1.params=
+comment1.target=SalaEstudio()
+comment2.params=r
+comment2.target=void\ agregarReserva(Reserva)
+comment2.text=\n\ Intenta\ agregar\ una\ reserva\ a\ la\ sala.\ No\ se\ permiten\ reservas\ superpuestas.\n\ @param\ r\ la\ reserva\ a\ agregar\n\ @throws\ IllegalArgumentException\ si\ r\ es\ nula\ o\ se\ superpone\ con\ otra\n
+comment3.params=hora
+comment3.target=boolean\ estaOcupada(int)
+comment3.text=\n\ Retorna\ true\ si\ hay\ una\ reserva\ activa\ en\ esa\ hora\ espec\u00EDfica.\n
+comment4.params=
+comment4.target=void\ imprimirReservas()
+comment5.params=
+comment5.target=boolean\ repOK()
+numComments=6

@@ -44,7 +44,7 @@ public class Picture
             wall.changeSize(120);
             wall.makeVisible();
             
-            window.changeColor("black");
+            //window.changeColor("black");
             window.moveHorizontal(-120);
             window.moveVertical(40);
             window.changeSize(40);
@@ -63,12 +63,14 @@ public class Picture
             sun.makeVisible();
             */
            
-            sun2.changeColor("yellow");
+            //sun2.changeColor("yellow");
             sun2.moveHorizontal(-150);
             sun2.moveVertical(-40);
             sun2.changeSize(50);
             sun2.makeVisible();
             drawn = true;
+
+            setColor();
         }
         
         // Ejercicio 1.19
@@ -113,7 +115,7 @@ public class Picture
         wall.changeColor("red");
         window.changeColor("black");
         roof.changeColor("green");
-        sun.changeColor("yellow");
+        sun2.changeColor("yellow");
     }
 }
 

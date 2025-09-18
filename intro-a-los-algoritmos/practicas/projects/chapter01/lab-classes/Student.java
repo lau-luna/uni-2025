@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 /**
  * The Student class represents a student in a student administration system.
@@ -6,8 +7,7 @@
  * @author Michael Kölling and David Barnes
  * @version 2016.02.29
  */
-public class Student
-{
+public class Student {
     // the student's full name
     private String name;
     // the student ID
@@ -18,8 +18,11 @@ public class Student
     /**
      * Create a new student with a given name and ID number.
      */
-    public Student(String fullName, String studentID)
-    {
+    public Student(String fullName, String studentID) {
+        if (fullName.length() < 4) {
+            System.out.println("The Student name is less than 4 characters.");
+        }
+
         name = fullName;
         id = studentID;
         credits = 0;
@@ -28,40 +31,35 @@ public class Student
     /**
      * Return the full name of this student.
      */
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
     /**
      * Set a new name for this student.
      */
-    public void changeName(String replacementName)
-    {
+    public void changeName(String replacementName) {
         name = replacementName;
     }
 
     /**
      * Return the student ID of this student.
      */
-    public String getStudentID()
-    {
+    public String getStudentID() {
         return id;
     }
 
     /**
      * Add some credit points to the student's accumulated credits.
      */
-    public void addCredits(int additionalPoints)
-    {
+    public void addCredits(int additionalPoints) {
         credits += additionalPoints;
     }
 
     /**
      * Return the number of credit points this student has accumulated.
      */
-    public int getCredits()
-    {
+    public int getCredits() {
         return credits;
     }
 
@@ -70,16 +68,18 @@ public class Student
      * of the first four characters of the student's name and the first three
      * characters of the student's ID number.
      */
-    public String getLoginName()
-    {
-        return name.substring(0,4) + id.substring(0,3);
+    public String getLoginName() {
+        if (this.name.length() > 4 && this.id.length() > 3) {
+            return name.substring(0, 4) + id.substring(0, 3);
+        } else {
+            return this.name + this.id;
+        }
     }
-    
+
     /**
      * Print the student's name and ID number to the output terminal.
      */
-    public void print()
-    {
+    public void print() {
         System.out.println(name + ", student ID: " + id + ", credits: " + credits);
     }
 }

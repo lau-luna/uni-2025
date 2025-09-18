@@ -1,0 +1,33 @@
+#+title: Linux
+#+AUTHOR: Lautaro Luna
+#+Date:
+
+* Sistema de archivos linux
+
+* / (root)
+|
+|--- bin/
+|
+|--- dev/
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|

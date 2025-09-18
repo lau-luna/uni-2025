@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Fonoteca
+comment0.text=\n\ Representa\ una\ fonoteca\ (repositorio\ de\ material\ musical)\ organizado\n\ en\ albumes\ de\ estudio\ y\ en\ vivo.\ \n
+comment1.params=nombre
+comment1.target=Fonoteca(java.lang.String)
+comment1.text=\n\ Constructor\ de\ la\ clase\ Fonoteca.\ Crea\ una\ nueva\ fonoteca\ con\ su\ nombre,\ y\ listas\n\ vac\u00EDas\ de\ albumes\ de\ estudio\ y\ en\ vivo.\n
+comment2.params=album
+comment2.target=void\ agregarAlbum(Album)
+comment2.text=\n\ Agrega\ un\ nuevo\ album\ a\ la\ fonoteca.\n\ @param\ album\ es\ el\ album\ a\ agregar.\n\ Precondici\u00F3n\:\ el\ album\ no\ debe\ ser\ null,\ ni\ deben\ existir\ albumes\ con\ el\ mismo\ t\u00EDtulo\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ en\ la\ fonoteca.\n\ Postcondici\u00F3n\:\ se\ agrega\ el\ album\ a\ la\ fonoteca,\ a\ la\ lista\ de\ albumes\ correspondiente,\ de\ \n\ \ \ \ \ \ \ \ \ \ \ \ \ \ acuerdo\ a\ si\ el\ album\ es\ en\ vivo\ o\ no.\ \n
+comment3.params=album\ lista
+comment3.target=boolean\ tieneRepetido(Album,\ java.util.ArrayList)
+comment3.text=\n\ Metodo\ auxiliar\ para\ chequear\ si\ un\ album\ ya\ esta\ en\ una\ lista\n
+comment4.params=anho
+comment4.target=java.util.HashSet\ obtenerTitulosAlbumesAnho(int)
+comment4.text=\n\ Retorna\ el\ conjunto\ de\ t\u00EDtulos\ de\ albumes\ de\ un\ a\u00F1o\ dado.\ \n\ @param\ anho\ es\ el\ a\u00F1o\ para\ el\ cual\ se\ deben\ encontrar\ los\ albumes\ en\ la\ fonoteca.\n\ @return\ el\ conjunto\ de\ todos\ los\ t\u00EDtulos\ de\ albumes\ en\ la\ fonoteca,\ cuyo\ a\u00F1o\ de\ edici\u00F3n\ es\ el\ dado.\n\ Precondici\u00F3n\:\ anho\ debe\ ser\ mayor\ o\ igual\ a\ 1900.\n
+comment5.params=
+comment5.target=boolean\ repOK()
+comment5.text=\n\ Invariante\ de\ representacion\ de\ la\ clase.\ Un\ objeto\ de\ tipo\ Fonoteca\ es\ internamente\ consistente\ si\:\n\ -\ El\ nombre\ de\ la\ fonoteca\ debe\ ser\ no\ nulo\ y\ no\ vacio\n\ -\ Las\ listas\ de\ albumes\ no\ deben\ tener\ elementos\ repetidos\ (albumes\ distintos\ con\ el\ mismo\ nombre)\n\ -\ La\ lista\ de\ albumes\ en\ vivo\ solo\ contiene\ albumes\ en\ vivo\n\ -\ la\ lista\ de\ albumes\ de\ estudio\ solo\ contiene\ albumes\ de\ estudio\ (no\ albumes\ en\ vivo)\n
+numComments=6

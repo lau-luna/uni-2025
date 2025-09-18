@@ -106,4 +106,11 @@ public class BouncingBall
     {
         return yPosition;
     }
+    
+    /**
+     * return ball's diameter
+     */
+    public int getDiameter(){
+        return this.diameter;
+    }
 }

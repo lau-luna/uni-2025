@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Biblioteca
+comment1.params=
+comment1.target=Biblioteca()
+comment1.text=\n\ Crea\ una\ biblioteca\ sin\ pr\u00E9stamos\ activos.\n
+comment2.params=p
+comment2.target=void\ agregarPrestamo(Prestamo)
+comment2.text=\n\ Registra\ un\ nuevo\ pr\u00E9stamo\ en\ la\ biblioteca.\ \n\ No\ se\ pueden\ prestar\ libros\ que\ ya\ est\u00E1n\ prestados.\n\ @param\ p\ el\ pr\u00E9stamo\ a\ agregar.\n
+comment3.params=dias
+comment3.target=boolean\ vencimientosProximos(int)
+comment3.text=\n\ Devuelve\ true\ si\ hay\ al\ menos\ un\ pr\u00E9stamo\ activo\ con\ menos\ de\ X\ d\u00EDas\ para\ vencimiento.\n\ @param\ dias\ l\u00EDmite\ inferior\ para\ vencimientos\ pr\u00F3ximos.\n
+comment4.params=
+comment4.target=void\ imprimirPrestamos()
+comment4.text=\n\ Imprime\ todos\ los\ pr\u00E9stamos\ activos.\n
+comment5.params=libro
+comment5.target=boolean\ estaPrestado(java.lang.String)
+comment5.text=\n\ Retorna\ true\ si\ el\ pr\u00E9stamo\ de\ un\ libro\ espec\u00EDfico\ ya\ existe.\n\ @param\ libro\ el\ nombre\ del\ libro.\n
+comment6.params=
+comment6.target=boolean\ repOK()
+comment6.text=\n\ Invariante\ de\ clase\:\ la\ lista\ no\ es\ nula\ y\ todos\ los\ pr\u00E9stamos\ son\ v\u00E1lidos.\n
+numComments=7
