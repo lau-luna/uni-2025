@@ -1,31 +1,31 @@
 public class Main {
   public static void main(String[] args) {
     /*
-     * (a) ”74 − 63 + ∗”, resultado esperado : 27
-     * (b) ”512 + 4 ∗ +3−”, resultado esperado : 14
-     * (c) ”392 + ∗8 − 5/” , resultado esperado : 5
+     * (a) ”7 4 − 6 3 + ∗”, resultado esperado : 27
+     * (b) ”5 1 2 + 4 ∗ +3 −”, resultado esperado : 14
+     * (c) ”3 9 2 + ∗ 8 − 5 /” , resultado esperado : 5
      */
 
-    String exp1 = "74 − 63 + ∗";
+    String exp1 = "7 4 − 6 3 + ∗";
     System.out.println(resolverPostfija(exp1));
 
-    String exp2 = "512 + 4 ∗ +3−";
+    String exp2 = "5 1 2 + 4 ∗ + 3 −";
     System.out.println(resolverPostfija(exp2));
 
-    String exp3 = "392 + ∗8 − 5/";
+    String exp3 = "3 9 2 + ∗ 8 − 5 /";
     System.out.println(resolverPostfija(exp3));
 
-    String exp4 = "492 + ∗s - 5/";
-    System.out.println(resolverPostfija(exp4));
+    //String exp4 = "4 9 2 + ∗s - 5 /";
+    //System.out.println(resolverPostfija(exp4));
   }
 
   public static int resolverPostfija(String exp) {
     int res = 0;
-    String[] arr = exp.replaceAll("\\s", "").split("");
+    String[] arr = exp.split(" ");
 
     System.out.print("[");
     for (String a : arr) {
-      System.out.print(a);
+      System.out.print(a + " ");
     }
     System.out.println("]");
 
