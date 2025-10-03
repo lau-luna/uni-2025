@@ -189,19 +189,116 @@ True
 -}
 
 
+--zeros :: (Num a, Eq a) => [a] ->a ->Bool
 zeros :: [Int] ->Int ->Bool
 zeros a 0 = True
-zeros a n = zeros a (n -1) && ( a !!( n -1) == 0)
+zeros a n = zeros a (n-1) && (a!!(n-1) == 0)
 
-zeroes :: [Int] ->Bool
+zeroes :: (Num a, Eq a) => [a] ->Bool
 zeroes [] = True
 zeroes (a:as) = zeroes as && (a == 0)
 -- La diferencia es que zeroes no toma el tamaño de la lista, sino que toma sólo la lista como parámetro.
 
 
+-- Ejericio 17
+
 
 
 -- Ejercicio 18.
-belongs :: a ->[a] ->Bool
+{-
+ 18. Determine que realiza la siguiente función.
+belongs e [] = False
+belongs e (a : as) = belongs e as || (a == e)
+
+Escriba el perfil de la misma y de 2 ejemplos de ejecución de la misma.
+ -}
+belongs :: Eq a => a ->[a] ->Bool
 belongs e [] = False
 belongs e (a:as) = belongs e as || (a == e)
+
+{-
+ 1) belongs 1 [0,1]
+ = def. belongs
+belongs 1 [1] || (0 == 1)
+  = def. (==)
+belongs 1 [1] || False
+  = def. belongs
+belongs 1 [] || (1 == 1) || False
+  = def. (==)
+belong 1 [] || True || False
+  = def. belongs
+False || True || False
+  = def. (||)
+True || False
+  = def. (||)
+True
+
+
+2) belongs 
+ -}
+
+ {- 
+length' [1]
+  def. length'
+1 + length' []
+  def. length'
+1 + 0
+  = aritmetica
+1
+-}
+
+{-
+-- Ejercicio 20
+
+(c) > length [[3,4],[]]
+length' [[3,4],[]]
+  = def. length'
+1 + length' [[]]
+  = def. length'
+1 + (1 + length' [])
+  = def. length'
+1 + (1 + 0)
+  = aritmetica
+1 + 1
+  = aritmetica
+2
+  -}
+
+
+  -- Ejercicio 19
+{- 
+19. (*) Escriba un programa que calcule el n-esimo valor en la sucesión de fibonacci. La sucesión
+de Fibonacci se trata de una serie infinita de números naturales que empieza con un 0 y un 1 y
+continúa añadiendo números que son la suma de los dos anteriores:
+-}
+
+fibonacci :: Int ->Int
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci(n-1) +  fibonacci(n-2) 
+
+-- Adicional personal
+-- Funcion que devuelve una lista con los primeros n fibonacci
+fibSequence :: Int ->[Int]
+fibSequence n = [fibonacci x | x <-[0..n]]
+
+
+-- Ejercicio 20
+
+{-
+ Dado el siguiente programa, determine el perfil de la función.
+ -}
+
+length2 :: [a] ->Int
+length2 [] = 0
+length2 (_:xs) = 1 + length2 xs
+
+
+-- Ejercicio adicional practico
+{-
+ Definir la multiplicacion de dos numeros positivos en base a la suma recursivamente
+ -}
+
+mult :: (Num a, Eq a) => a ->a ->a
+mult n 0 = 0
+mult n m = n + mult n (m-1)
