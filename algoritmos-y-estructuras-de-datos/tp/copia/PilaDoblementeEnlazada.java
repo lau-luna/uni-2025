@@ -24,7 +24,6 @@ public class PilaDoblementeEnlazada<T> implements Pila<T> {
 
     @Override
     public void apilar(T elem) throws IllegalStateException {
-      // Ver cómo implementar capacidad máxima de la pila.
 
       NodoPila<T> nodoNuevo = new NodoPila<>(inicio, elem, null);
       
@@ -56,11 +55,12 @@ public class PilaDoblementeEnlazada<T> implements Pila<T> {
     @Override
     public void imprimir() {
       // Esto imprime de inicio a fin
+      // No tocar ? pero no funciona
         NodoPila<T> temp = this.inicio;
         while (temp != null) {
             System.out.print(temp.getItem());
             System.out.print(", ");
-            temp = temp.getNext();
+            temp = temp.getNext();      /// En mi implementación debería ser temp.getPrev()
         }
         System.out.println("");
     }
@@ -69,12 +69,26 @@ public class PilaDoblementeEnlazada<T> implements Pila<T> {
     public void imprimirReversa() {
       // Esto imprime de fin a inicio
         NodoPila<T> temp = this.fin;
+        System.out.print("Fin ->[");
         while (temp != null) {
             System.out.print(temp.getItem());
-            System.out.print(", ");
-            temp = temp.getPrev();
+            System.out.print( (temp.getNext() == null ? "" : ", ") );
+            temp = temp.getNext();
         }
-        System.out.println("");
+        System.out.println("] <-Tope");
+    }
+
+    public static void main(String[] args) {
+      PilaDoblementeEnlazada<Integer> pila = new PilaDoblementeEnlazada<>();
+
+      pila.apilar(1);
+      pila.apilar(2);
+      pila.apilar(3);
+
+      System.out.println("Tope: " + pila.tope());
+      pila.imprimirReversa(); 
+      pila.desapilar();
+      pila.imprimirReversa(); 
     }
 
 }

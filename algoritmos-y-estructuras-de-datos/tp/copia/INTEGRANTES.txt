@@ -1,4 +1,0 @@
-Nombre y Apellido, DNI
-Integrante N°1: Lautaro Eduardo Eber Luna, 46848650
-Integrante N°2: Lucio Gomez Molina, 46848693 
-Integrante N°3: ______
