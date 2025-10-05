@@ -1,0 +1,123 @@
+-- =============================================================================
+-- 1er PARCIAL - ALGORITMOS Y ESTRUCTURAS DE DATOS I (3378)
+-- =============================================================================
+
+-- Nombre y Apellido: _________________________
+-- DNI: _______________
+-- Comisión: __________
+
+-- =============================================================================
+-- PARTE 1 - PROGRAMACIÓN FUNCIONAL (Haskell)
+-- =============================================================================
+
+-- Pregunta 1 - Tipado (3 puntos)
+-- Determinar el tipo resultante de las siguientes expresiones:
+
+-- 1. (map (+1) . filter (>0)) [-2, -1, 3, 4]
+-- Tipo: [Int]
+
+-- 2. (fst . head) [(1, 'a'), (2, 'b')]
+-- Tipo: Int
+
+-- 3. (length . concat) ["hola", "mundo"]
+-- Tipo: Int
+
+-- Pregunta 2 - Funciones recursivas (4 puntos)
+
+-- (a) Implementar la función 'sumarPares' que suma todos los números pares de una lista
+-- Ej: sumarPares [1,2,3,4,5] = 6
+sumarPares :: [Int] -> Int
+sumarPares [] = 0
+sumarPares (x:xs) = if (mod x 2) == 0 then x + sumarPares xs else sumarPares xs
+
+-- (b) Implementar la función 'replicar' que replica un elemento n veces
+-- Ej: replicar 3 'a' = "aaa"  
+replicar :: Int -> a -> [a]
+replicar 0 _ = []
+replicar n x = x: replicar (n-1)
+
+-- Pregunta 3 - Manejo de listas (3 puntos)
+
+-- Implementar la función 'intercalar' que intercala dos listas
+-- Ej: intercalar [1,3,5] [2,4,6] = [1,2,3,4,5,6]
+intercalar :: [a] -> [a] -> [a]
+intercalar [] ys = ys
+intercalar xs [] = xs
+intercalar (x:xs) (y:ys) = x: y: intercalar xs ys
+
+-- =============================================================================
+-- PARTE 2 - PROGRAMACIÓN OO y TADS  
+-- =============================================================================
+
+-- Pregunta 4 - Pilas con Listas Enlazadas (4 puntos)
+
+-- Dada la clase Nodo:
+-- public class Nodo<T> {
+--     private T dato;
+--     private Nodo<T> siguiente;
+--     
+--     public Nodo(T dato) { 
+--         this.dato = dato; 
+--         this.siguiente = null; 
+--     }
+--     public T getDato() { return dato; }
+--     public Nodo<T> getSiguiente() { return siguiente; }
+--     public void setSiguiente(Nodo<T> sig) { siguiente = sig; }
+-- }
+
+-- Implementar la clase PilaLista:
+
+-- public class PilaLista<T> {
+--     private Nodo<T> tope;
+--     private int cantidad;
+--     
+--     public PilaLista() {
+--         tope = null;
+--         cantidad = 0;
+--     }
+--     
+--     // Apilar un elemento
+--     public void apilar(T elemento) {
+--         Nodo<T> nuevo = new Nodo<T>(elemento);
+--         nuevo.setSiguiente(tope);
+--         tope = nuevo;
+--         cantidad++;
+--     }
+--     
+--     // Desapilar un elemento
+--     public T desapilar() {
+--         if (esVacia()) {
+--             throw new RuntimeException("Pila vacía");
+--         }
+--         T dato = tope.getDato();
+--         tope = tope.getSiguiente();
+--         cantidad--;
+--         return dato;
+--     }
+--     
+--     // Ver el tope sin desapilar
+--     public T tope() {
+--         if (esVacia()) {
+--             throw new RuntimeException("Pila vacía");
+--         }
+--         return this.tope.getDato();
+--     }
+--     
+--     public boolean esVacia() {
+--         return cantidad == 0;
+--     }
+-- }
+
+-- (b) ¿En qué orden salen los elementos de una pila? (LIFO/FIFO)
+-- Las pilas siguen el orden FIFO.
+
+-- =============================================================================
+-- Pregunta BONUS (2 puntos)
+-- =============================================================================
+
+-- ¿Qué ventaja tiene usar listas enlazadas sobre arreglos para implementar pilas?
+-- ______________________________________________________________________________
+-- ______________________________________________________________________________
+-- ______________________________________________________________________________
+
+-- FIN DEL PARCIAL
