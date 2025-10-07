@@ -167,3 +167,18 @@ sumarLista (x:xs) = x + sumTail
   where sumTail = sumarLista xs
 
 
+-- lol
+(++.) :: [a] ->[a] ->[a]
+xs ++. [] = xs
+[] ++. ys = ys
+(x:xs) ++. ys = x: xs ++. ys 
+
+
+s :: Num a => (a, a) ->a
+s (x,y) = x + y
+
+s' :: Num a => a ->a ->a
+s' x y = x + y
+
+si :: Num a => a ->a ->a
+si x y = (s' . s' ) x y
